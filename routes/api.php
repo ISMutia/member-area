@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\BillController;
 use App\Http\Controllers\Api\DomainController;
 use App\Http\Controllers\Api\OrderController;
@@ -46,16 +47,28 @@ Route::get('/progress', [ProgressController::class, 'index']);
 
 
 
-Route::get('/status', [StatusController::class, 'index']);
-Route::post('/status', [StatusController::class, 'create']);
+Route::get('/statusList', [StatusController::class, 'index']);
+Route::post('/statusAdd', [StatusController::class, 'create']);
 
 
 
 Route::get('/bill', [BillController::class, 'index']);
 
 
+// Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+//     return $request->user();
+// });
 
+Route::group([
+    'prefix' => 'auth'
+], function () {
+    Route::post('login', [AuthController::class, 'login']);
+    Route::post('signup', [AuthController::class, 'signup']);
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+    Route::group([
+        'middleware' => 'auth:api'
+    ], function () {
+        Route::get('logout', [AuthController::class, 'logout']);
+        Route::get('user', [AuthController::class, 'user']);
+    });
 });

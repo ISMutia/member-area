@@ -45,7 +45,7 @@
               <p class="mb-1 mt-3 font-weight-semibold">Allen Moreno</p>
               <p class="fw-light text-muted mb-0">allenmoreno@gmail.com</p>
             </div>
-            <a class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
+            <a href="{{ route('logout') }}" class="dropdown-item"><i class="dropdown-item-icon mdi mdi-power text-primary me-2"></i>Sign Out</a>
           </div>
         </li>
       </ul>
