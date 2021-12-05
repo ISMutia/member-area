@@ -14,7 +14,11 @@ class AuthController extends Controller
 {
     public function index()
     {
-        return view('auth.login');
+        if (Session::get('id') != null) {
+            return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
+        } else {
+            return view('auth.loginv2');
+        }
     }
 
     public function registration()
@@ -32,7 +36,21 @@ class AuthController extends Controller
         $data = DB::select("SELECT * FROM user WHERE email='" . $request->email . "' and password='" . $request->password . "';");
 
         if (count($data) > 0) {
+
             if ($data[0]->status == "admin") {
+                
+                // Session::put('id', $data[0]->id);
+                // Session::put('fulname', $data[0]->fullname);
+                // Session::put('date_birth', $data[0]->date_birth);
+                // Session::put('email', $data[0]->email);
+                // Session::put('password', $data[0]->password);
+                // Session::put('gambar', $data[0]->gambar);
+                // Session::put('status', $data[0]->status);
+                
+                session()->put('data', 'bla bla');
+
+                
+                
                 return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
             } else {
                 return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');

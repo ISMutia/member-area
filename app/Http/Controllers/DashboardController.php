@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use PhpParser\Node\Expr\PostDec;
 use App\Models\ProgressModel;
 use App\Models\OrderModel;
+use Session;
 use Illuminate\Support\Facades\DB;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 
@@ -26,6 +27,8 @@ class DashboardController extends Controller
         return view('dashboard.index', [
             'data' => $dataDashboard,
             'keyword' => $keyword,
+            'fullname' => Session::get('fullname'),
+            
         ]);
     }
 }
