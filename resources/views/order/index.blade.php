@@ -47,7 +47,7 @@
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($data as $d)  
+                  @foreach ($data as $d)
                   <tr>
                     <td>
                       {{ $d->customer_name }}
@@ -75,8 +75,8 @@
                     </td>
 
                     <td>
-                      <a href="/order/edit/{{ $d->id }}"class="btn btn-primary btn-sm">Edit</button>
-                      <a href="/order/delete/{{ $d->id }}" class="btn btn-danger btn-sm">Delete</button>
+                      <a href="{{ route('order.edit', ['id' => $d->id]) }}"class="btn btn-primary btn-sm">Edit</button>
+                      <a href="{{ route('order.delete', ['id' => $d->id]) }}" class="btn btn-danger btn-sm">Delete</button>
                     </td>
                   </tr>
                   @endforeach

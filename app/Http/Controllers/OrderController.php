@@ -6,6 +6,7 @@ use App\Models\BillModel;
 use App\Models\DomainModel;
 use App\Models\OrderModel;
 use App\Models\PriceModel;
+use App\Models\ProgressModel;
 use App\Models\StatusModel;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
@@ -37,10 +38,16 @@ class OrderController extends Controller
 
     public function delete($id)
     {
+        $bill = BillModel::where('id_h_orders', $id)->first();
+        $bill->delete();
+
+        $progress = ProgressModel::where('id_h_orders', $id)->first();
+        $progress->delete();
+
         $dataOrder = OrderModel::find($id);
         $dataOrder->delete();
 
-        return redirect('/order');
+        return redirect()->route('order.index')->withSuccess('Success delete order');
     }
 
     public function create()

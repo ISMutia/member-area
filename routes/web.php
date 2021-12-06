@@ -72,9 +72,9 @@ Route::group([
     ], function () {
         Route::get('/', [OrderController::class, 'index'])->name('index');
         Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
+        Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
         Route::post('/store', [OrderController::class, 'store'])->name('store');
         Route::put('/update/{id}', [OrderController::class, 'update'])->name('update');
-        Route::delete('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
     });
 
     // Route::get('/price', [PriceController::class, 'index']);
