@@ -14,12 +14,12 @@ class OrderController extends Controller
             'data' => OrderModel::all(),
             'status' => 'success',
         ];
+
         return response()->json($data, 200);
     }
 
     public function create(Request $r)
     {
-
         $data = new OrderModel();
         $data->project_name = $r->project_name;
         $data->id_price = $r->id_price;
@@ -34,8 +34,9 @@ class OrderController extends Controller
         $data = [
             'data' => OrderModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
     }
 }

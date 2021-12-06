@@ -2,23 +2,22 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
-use Session;
 use App\Models\User;
 use Hash;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Session;
 
 class AuthController extends Controller
 {
     public function index()
     {
-        if (Session::get('id') != null) {
+        if (null !== Session::get('id')) {
             return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
-        } else {
-            return view('auth.loginv2');
         }
+
+        return view('auth.loginv2');
     }
 
     public function registration()
@@ -33,12 +32,10 @@ class AuthController extends Controller
             'password' => 'required',
         ]);
 
-        $data = DB::select("SELECT * FROM user WHERE email='" . $request->email . "' and password='" . $request->password . "';");
+        $data = DB::select("SELECT * FROM user WHERE email='".$request->email."' and password='".$request->password."';");
 
-        if (count($data) > 0) {
-
-            if ($data[0]->status == "admin") {
-                
+        if (\count($data) > 0) {
+            if ('admin' === $data[0]->status) {
                 // Session::put('id', $data[0]->id);
                 // Session::put('fulname', $data[0]->fullname);
                 // Session::put('date_birth', $data[0]->date_birth);
@@ -46,18 +43,16 @@ class AuthController extends Controller
                 // Session::put('password', $data[0]->password);
                 // Session::put('gambar', $data[0]->gambar);
                 // Session::put('status', $data[0]->status);
-                
+
                 session()->put('data', 'bla bla');
 
-                
-                
                 return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
-            } else {
-                return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
             }
-        } else {
-            return redirect("login")->withSuccess('Oppes! You have entered invalid credentials');
+
+            return redirect('login')->withSuccess('Oppes! You have entered invalid credentials');
         }
+
+        return redirect('login')->withSuccess('Oppes! You have entered invalid credentials');
     }
 
     public function postRegistration(Request $request)
@@ -71,7 +66,7 @@ class AuthController extends Controller
         $data = $request->all();
         $check = $this->create($data);
 
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+        return redirect('dashboard')->withSuccess('Great! You have Successfully loggedin');
     }
 
     public function dashboard()
@@ -80,7 +75,7 @@ class AuthController extends Controller
             return view('dashboard');
         }
 
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect('login')->withSuccess('Opps! You do not have access');
     }
 
     public function create(array $data)
@@ -88,7 +83,7 @@ class AuthController extends Controller
         return User::create([
             'fullname' => $data['fullname'],
             'email' => $data['email'],
-            'password' => Hash::make($data['password'])
+            'password' => Hash::make($data['password']),
         ]);
     }
 

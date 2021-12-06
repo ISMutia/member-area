@@ -21,9 +21,10 @@ class BillController extends Controller
         $dataBills = DB::select("SELECT m_bills.*,
         trans_h_orders.project_name,
         m_status.name AS name_status
-        FROM m_bills 
+        FROM m_bills
         LEFT JOIN trans_h_orders ON trans_h_orders.id = m_bills.id_h_orders
-        LEFT JOIN m_status ON m_status.id = m_bills.id_status where trans_h_orders.project_name LIKE '%" . $keyword . "%'");
+        LEFT JOIN m_status ON m_status.id = m_bills.id_status where trans_h_orders.project_name LIKE '%".$keyword."%'");
+
         return view('bill.index', [
             'data' => $dataBills,
             'keyword' => $keyword,
@@ -39,12 +40,12 @@ class BillController extends Controller
     {
         $dataOrder = OrderModel::all();
         $dataStatus = StatusModel::all();
+
         return view(
             'bill.create',
             [
                 'dataOrder' => $dataOrder,
-                'dataStatus' => $dataStatus
-
+                'dataStatus' => $dataStatus,
             ]
         );
     }
@@ -52,7 +53,8 @@ class BillController extends Controller
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
+     *
      * @return \Illuminate\Http\Response
      */
     public function store(Request $r)
@@ -70,18 +72,19 @@ class BillController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
@@ -95,8 +98,7 @@ class BillController extends Controller
             [
                 'dataOrder' => $dataOrder,
                 'dataStatus' => $dataStatus,
-                'dataBills' => $dataBills
-
+                'dataBills' => $dataBills,
             ]
         );
     }
@@ -104,8 +106,9 @@ class BillController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param int                      $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function update(Request $r)
@@ -123,13 +126,15 @@ class BillController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param int $id
+     *
      * @return \Illuminate\Http\Response
      */
     public function delete($id)
     {
         $dataBills = BillModel::find($id);
         $dataBills->delete();
+
         return redirect('/bill');
     }
 }

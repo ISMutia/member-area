@@ -13,29 +13,33 @@ class DomainController extends Controller
     {
         $keyword = $request->search;
         $dataDomain = DB::select("SELECT m_domain.*,
-        m_price.name AS price_name 
-        FROM m_domain 
-        LEFT JOIN m_price ON m_price.id = m_domain.id_price where m_price.name LIKE '%" . $keyword . "%'");
+        m_price.name AS price_name
+        FROM m_domain
+        LEFT JOIN m_price ON m_price.id = m_domain.id_price where m_price.name LIKE '%".$keyword."%'");
+
         return view('domain.index', [
             'data' => $dataDomain,
             'keyword' => $keyword,
         ]);
     }
+
     public function delete($id)
     {
         $dataDomain = DomainModel::find($id);
         $dataDomain->delete();
+
         return redirect('/domain');
     }
 
     public function create()
     {
         $dataPrice = PriceModel::all();
+
         return view('domain.create', ['dataPrice' => $dataPrice]);
     }
+
     public function store(Request $r)
     {
-
         // return "coba";
         // return $r->all();
 
@@ -54,12 +58,12 @@ class DomainController extends Controller
     {
         $dataPrice = PriceModel::all();
         $dataDomain = DomainModel::find($id);
+
         return view(
             'domain.edit',
             [
                 'dataPrice' => $dataPrice,
-                'dataDomain' => $dataDomain
-
+                'dataDomain' => $dataDomain,
             ]
         );
     }

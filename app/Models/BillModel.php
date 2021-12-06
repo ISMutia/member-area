@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class BillModel extends Model
 {
-    protected $table = "m_bills";
+    protected $table = 'm_bills';
 
     public function order()
     {

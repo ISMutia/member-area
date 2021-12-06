@@ -9,22 +9,26 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $dataUser = UserModel::where('fullname', 'like', '%' . $request->search . '%')->get();
+        $dataUser = UserModel::where('fullname', 'like', '%'.$request->search.'%')->get();
+
         return view('user.index', ['data' => $dataUser]);
     }
+
     public function delete($id)
     {
         $dataUser = UserModel::find($id);
         $dataUser->delete();
+
         return redirect('/user');
     }
+
     public function create()
     {
         return view('user.create');
     }
+
     public function store(Request $r)
     {
-
         // return "coba";
         // return $r->all();
 
@@ -46,10 +50,11 @@ class UserController extends Controller
     {
         $dataUser = UserModel::all();
         $dataUser = UserModel::find($id);
+
         return view(
             'user.edit',
             [
-                'dataUser' => $dataUser
+                'dataUser' => $dataUser,
             ]
         );
     }

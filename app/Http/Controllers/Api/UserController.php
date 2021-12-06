@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use App\Models\UserModel;
 use Illuminate\Http\Request;
 
@@ -15,8 +14,10 @@ class UserController extends Controller
             'data' => UserModel::all(),
             'status' => 'success',
         ];
+
         return response()->json($data, 200);
     }
+
     public function create(Request $r)
     {
         $data = new UserModel();
@@ -30,16 +31,14 @@ class UserController extends Controller
         $data = [
             'data' => UserModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
-        return response()->json($data, 200);
-        
-    }
 
+        return response()->json($data, 200);
+    }
 
     public function update(Request $r, $id)
     {
-
         $fullname = $r->fullname;
         $date_birth = $r->date_birth;
         $email = $r->email;
@@ -57,24 +56,23 @@ class UserController extends Controller
         $data = [
             'data' => UserModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
-        
     }
+
     public function delete($id)
     {
         $dataUser = UserModel::find($id);
         $dataUser->delete();
-        
+
         $data = [
             'data' => UserModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
-        return response()->json($data, 200);
-        
-    }
 
-    
+        return response()->json($data, 200);
+    }
 }

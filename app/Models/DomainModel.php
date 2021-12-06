@@ -2,12 +2,11 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DomainModel extends Model
 {
-    protected $table = "m_domain";
+    protected $table = 'm_domain';
 
     public function price()
     {

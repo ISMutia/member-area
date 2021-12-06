@@ -1,16 +1,15 @@
 <?php
 
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
-use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\StatusController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\DomainController;
-use App\Http\Controllers\PriceController;
-use App\Http\Controllers\TestimoniController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\DashboardController;
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\DomainController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PriceController;
+use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\StatusController;
+use App\Http\Controllers\TestimoniController;
+use App\Http\Controllers\UserController;
 
 // Route::get('/status', [StatusController::class, 'index']);
 // Route::get('/status/delete/{id}', [StatusController::class, 'delete']);
@@ -95,7 +94,7 @@ Route::prefix('bill')->group(function () {
     Route::get('/edit/{id}', [BillController::class, 'edit']);
 });
 
-use App\Http\Controllers\AuthController;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
@@ -105,7 +104,6 @@ Route::post('post-registration', [AuthController::class, 'postRegistration'])->n
 Route::get('logout', [AuthController::class, 'logout'])->name('logout');
 
 Route::get('/dashboard', [DashboardController::class, 'index']);
-
 
 // Route::get('/', [LoginController::class, 'index']);
 

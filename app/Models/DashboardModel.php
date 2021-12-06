@@ -2,10 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class DashboardModel extends Model
 {
-    protected $table = "trans_d_orders";
+    protected $table = 'trans_d_orders';
 }
