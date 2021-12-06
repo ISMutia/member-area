@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class OrderModel extends Model
 {
     protected $table = "trans_h_orders";
+
+    // public function bill()
+    // {
+    //     return $this->belongsTo(BillModel::class, 'id_h_orders');
+    // }
 }

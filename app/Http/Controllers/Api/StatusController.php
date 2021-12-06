@@ -30,4 +30,33 @@ class StatusController extends Controller
         ];
         return response()->json($data, 200);
     }
+
+    public function update(Request $r, $id)
+    {
+        $name = $r->name;
+
+        $data = StatusModel::find($id);
+        $data->name = $r->name;
+        $data->save();
+
+        $data = [
+            'data' => StatusModel::all(),
+            'status' => 'success',
+            'message' => 'Data Berhasil'
+        ];
+        return response()->json($data, 200);
+    }
+    public function delete($id)
+    {
+        $dataStatus = StatusModel::find($id);
+        $dataStatus->delete();
+        
+        $data = [
+            'data' => StatusModel::all(),
+            'status' => 'success',
+            'message' => 'Data Berhasil'
+        ];
+        return response()->json($data, 200);
+        
+    }
 }

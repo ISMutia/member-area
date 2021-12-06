@@ -110,6 +110,7 @@ class BillController extends Controller
      */
     public function update(Request $r)
     {
+        // dd($r->all());
         $data = BillModel::find($r->id);
         $data->id_h_orders = $r->id_h_orders;
         $data->id_status = $r->id_status;

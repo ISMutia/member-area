@@ -11,15 +11,12 @@
             <br>
             <form action="/domain/update" method="POST">
               {{csrf_field()}}
-            <div class="form-group">
-              <label for="id_price">Type Price:</label>
-              <select name="id_price" >
-                @foreach ($dataPrice as $d)
-                <option value="{{ $d->id }}" @if ($dataDomain->id_price==$d->id) {{ "selected" }}@endif> 
-                {{ $d->name }}</option>                    
-                @endforeach
-              </select>
-            </div>  
+              <div class="form-group">
+                <label>Price Name : </label>
+                <td>
+                  {{ $dataDomain->price->name }}
+                </td>
+              </div>  
             <div class="form-group">
                 <input type="hidden" name="id" class="form-control" aria-label="Domain Name" value="{{ $dataDomain->id }}">
               </div>

@@ -73,7 +73,7 @@ class OrderController extends Controller
         $data->lama_p = $r->lama_p;
         $data->mulai_p = $r->mulai_p;
         $data->selesai_p = $r->selesai_p;
-        $data->total_harga = $r->total_harga;
+        //$data->total_harga = $r->total_harga;
         $data->id_domain = $r->id_domain;
         $data->id_customers = $r->id_customers;
         $data->save();
@@ -93,7 +93,7 @@ class OrderController extends Controller
             'order.edit',
 
             [
-                'dataPrice' => $dataPrice,
+               'dataPrice' => $dataPrice,
                 'dataStatus' => $dataStatus,
                 'dataDomain' => $dataDomain,
                 'dataUser' => $dataUser,

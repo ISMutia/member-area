@@ -13,13 +13,10 @@
               {{csrf_field()}}
 
               <div class="form-group">
-                <label for="id_h_orders">Project Name:</label>
-                <select name="id_h_orders" id="class">
-                  @foreach ($dataOrder as $d)
-                  <option value="{{ $d->id }}" @if ($dataProgress->id_h_orders==$d->id) {{ "selected" }}@endif> 
-                    {{ $d->project_name }}</option>                    
-                  @endforeach
-                </select>
+                <label>Project Name : </label>
+                <td>
+                  {{ $dataProgress->order->project_name }}
+                </td>
               </div>
               <div class="form-group">
                 <input type="hidden" name="id" class="form-control" aria-label="Domain Name" value="{{ $dataProgress->id }}">
