@@ -29,6 +29,7 @@ class AuthController extends Controller
 
         $user = UserModel::where('email', $request->email)
             ->where('password', $request->password)
+            ->where('status', 'admin')
             ->first();
 
         if ($user) {
