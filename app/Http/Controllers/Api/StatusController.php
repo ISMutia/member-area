@@ -14,11 +14,12 @@ class StatusController extends Controller
             'data' => StatusModel::all(),
             'status' => 'success',
         ];
+
         return response()->json($data, 200);
     }
+
     public function create(Request $r)
     {
-
         $data = new StatusModel();
         $data->name = $r->name;
         $data->save();
@@ -26,8 +27,9 @@ class StatusController extends Controller
         $data = [
             'data' => StatusModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
     }
 
@@ -42,21 +44,23 @@ class StatusController extends Controller
         $data = [
             'data' => StatusModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
     }
+
     public function delete($id)
     {
         $dataStatus = StatusModel::find($id);
         $dataStatus->delete();
-        
+
         $data = [
             'data' => StatusModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
-        
     }
 }

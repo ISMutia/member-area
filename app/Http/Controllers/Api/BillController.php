@@ -14,13 +14,13 @@ class BillController extends Controller
             'data' => BillModel::all(),
             'status' => 'success',
         ];
+
         return response()->json($data, 200);
         //return BillModel::all();
     }
-    
+
     public function create(Request $r)
     {
-
         $data = new BillModel();
         $data->id_h_orders = $r->id_h_orders;
         $data->bukti = $r->bukti;
@@ -31,8 +31,9 @@ class BillController extends Controller
         $data = [
             'data' => BillModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
     }
 
@@ -42,7 +43,6 @@ class BillController extends Controller
         $bukti = $r->bukti;
         $id_status = $r->id_status;
         $total_bayar = $r->total_bayar;
-
 
         $data = BillModel::find($id);
         $data->id_h_orders = $r->id_h_orders;
@@ -54,8 +54,9 @@ class BillController extends Controller
         $data = [
             'data' => BillModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
     }
 
@@ -63,13 +64,13 @@ class BillController extends Controller
     {
         $dataBills = BillModel::find($id);
         $dataBills->delete();
-        
+
         $data = [
             'data' => BillModel::all(),
             'status' => 'success',
-            'message' => 'Data Berhasil'
+            'message' => 'Data Berhasil',
         ];
+
         return response()->json($data, 200);
-        
     }
 }

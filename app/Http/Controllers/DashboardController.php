@@ -3,12 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use PhpParser\Node\Expr\PostDec;
-use App\Models\ProgressModel;
-use App\Models\OrderModel;
-use Session;
 use Illuminate\Support\Facades\DB;
-use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use Illuminate\Support\Facades\Session;
 
 class DashboardController extends Controller
 {
@@ -23,12 +19,12 @@ class DashboardController extends Controller
         INNER JOIN trans_h_orders ON user.id  = trans_h_orders.id_customers
         INNER JOIN trans_d_orders ON trans_h_orders.id = trans_d_orders.id_h_orders
         LEFT JOIN m_bills ON trans_h_orders.id = m_bills.id_h_orders
-        LEFT JOIN m_status ON m_status.id = m_bills.id_status where trans_h_orders.project_name LIKE '%" . $keyword . "%'");
+        LEFT JOIN m_status ON m_status.id = m_bills.id_status where trans_h_orders.project_name LIKE '%".$keyword."%'");
+
         return view('dashboard.index', [
             'data' => $dataDashboard,
             'keyword' => $keyword,
             'fullname' => Session::get('fullname'),
-            
         ]);
     }
 }

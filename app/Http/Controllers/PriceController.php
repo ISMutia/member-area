@@ -9,22 +9,26 @@ class PriceController extends Controller
 {
     public function index(Request $request)
     {
-        $dataPrice = priceModel::where('name', 'like', '%' . $request->search . '%')->get();
+        $dataPrice = priceModel::where('name', 'like', '%'.$request->search.'%')->get();
+
         return view('price.index', ['data' => $dataPrice]);
     }
+
     public function delete($id)
     {
         $dataPrice = PriceModel::find($id);
         $dataPrice->delete();
+
         return redirect('/price');
     }
+
     public function create()
     {
         return view('price.create');
     }
+
     public function store(Request $r)
     {
-
         // return "coba";
         // return $r->all();
 
@@ -44,10 +48,11 @@ class PriceController extends Controller
     {
         $dataPrice = PriceModel::all();
         $dataPrice = PriceModel::find($id);
+
         return view(
             'price.edit',
             [
-                'dataPrice' => $dataPrice
+                'dataPrice' => $dataPrice,
             ]
         );
     }

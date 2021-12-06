@@ -11,21 +11,23 @@ class TestimoniController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->search;
-        $dataTestimoni = DB::select("SELECT 
+        $dataTestimoni = DB::select("SELECT
         trans_h_testimonial.*,
-        user.fullname AS customer_name 
-        FROM trans_h_testimonial 
-        LEFT JOIN user ON user.id = trans_h_testimonial.id_customers where user.fullname LIKE '%" . $keyword . "%'");
+        user.fullname AS customer_name
+        FROM trans_h_testimonial
+        LEFT JOIN user ON user.id = trans_h_testimonial.id_customers where user.fullname LIKE '%".$keyword."%'");
 
         return view('testimoni.index', [
             'data' => $dataTestimoni,
             'keyword' => $keyword,
         ]);
     }
+
     public function delete($id)
     {
         $dataTestimoni = TestimoniModel::find($id);
         $dataTestimoni->delete();
+
         return redirect('/testimoni');
     }
 }

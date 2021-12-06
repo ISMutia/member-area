@@ -9,7 +9,8 @@ class StatusController extends Controller
 {
     public function index(Request $request)
     {
-        $dataStatus = StatusModel::where('name', 'like', '%' . $request->search . '%')->get();
+        $dataStatus = StatusModel::where('name', 'like', '%'.$request->search.'%')->get();
+
         return view('status.index', ['data' => $dataStatus]);
     }
 
@@ -17,6 +18,7 @@ class StatusController extends Controller
     {
         $dataStatus = StatusModel::find($id);
         $dataStatus->delete();
+
         return redirect('/status');
     }
 
@@ -27,7 +29,6 @@ class StatusController extends Controller
 
     public function store(Request $r)
     {
-
         // return "coba";
         // return $r->all();
 
@@ -45,10 +46,11 @@ class StatusController extends Controller
     {
         $dataStatus = StatusModel::all();
         $dataStatus = StatusModel::find($id);
+
         return view(
             'status.edit',
             [
-                'dataStatus' => $dataStatus
+                'dataStatus' => $dataStatus,
             ]
         );
     }
