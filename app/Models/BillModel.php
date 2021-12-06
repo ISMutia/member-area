@@ -12,4 +12,9 @@ class BillModel extends Model
     {
         return $this->belongsTo(OrderModel::class, 'id_h_orders', 'id');
     }
+
+    public function status()
+    {
+        return $this->belongsTo(StatusModel::class, 'id_status', 'id');
+    }
 }

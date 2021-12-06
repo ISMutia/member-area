@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\BillModel;
 use App\Models\DomainModel;
 use App\Models\OrderModel;
 use App\Models\PriceModel;
@@ -92,33 +93,35 @@ class OrderController extends Controller
         $dataStatus = StatusModel::all();
         $dataDomain = DomainModel::all();
         $dataUser = UserModel::all();
+        $dataStatus = StatusModel::all();
 
-        return view(
-            'order.edit',
-            [
-                'dataPrice' => $dataPrice,
-                'dataStatus' => $dataStatus,
-                'dataDomain' => $dataDomain,
-                'dataUser' => $dataUser,
-                'dataOrder' => $dataOrder,
-            ]
-        );
+        return view('order.edit', [
+            'dataPrice' => $dataPrice,
+            'dataStatus' => $dataStatus,
+            'dataDomain' => $dataDomain,
+            'dataUser' => $dataUser,
+            'dataOrder' => $dataOrder,
+            'dataStatus' => $dataStatus,
+        ]);
     }
 
-    public function update(Request $r)
+    public function update(Request $request, $id)
     {
-        $data = OrderModel::find($r->id);
+        $data = OrderModel::find($id);
 
-        $data->id_customers = $r->id_customers;
-        $data->project_name = $r->project_name;
-        $data->id_price = $r->id_price;
-        $data->id_domain = $r->id_domain;
-        $data->id_status = $r->id_status;
-        $data->lama_p = $r->lama_p;
-        $data->mulai_p = $r->mulai_p;
-        $data->selesai_p = $r->selesai_p;
+        $data->id_customers = $request->id_customers;
+        $data->project_name = $request->project_name;
+        $data->id_price = $request->id_price;
+        $data->id_domain = $request->id_domain;
+        $data->lama_p = $request->lama_p;
+        $data->mulai_p = $request->mulai_p;
+        $data->selesai_p = $request->selesai_p;
         $data->save();
 
-        return redirect('/order');
+        $bill = BillModel::where('id_h_orders', $id)->first();
+        $bill->id_status = $request->id_status;
+        $bill->save();
+
+        return redirect()->route('order.index')->withSuccess('Success update order');
     }
 }

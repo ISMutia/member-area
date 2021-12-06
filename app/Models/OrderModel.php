@@ -8,8 +8,23 @@ class OrderModel extends Model
 {
     protected $table = 'trans_h_orders';
 
-    // public function bill()
-    // {
-    //     return $this->belongsTo(BillModel::class, 'id_h_orders');
-    // }
+    public function customer()
+    {
+        return $this->belongsTo(UserModel::class, 'id_customers', 'id');
+    }
+
+    public function domain()
+    {
+        return $this->belongsTo(DomainModel::class, 'id_domain', 'id');
+    }
+
+    public function price()
+    {
+        return $this->belongsTo(PriceModel::class, 'id_price', 'id');
+    }
+
+    public function bill()
+    {
+        return $this->belongsTo(BillModel::class, 'id', 'id_h_orders');
+    }
 }
