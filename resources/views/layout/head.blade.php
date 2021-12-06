@@ -19,3 +19,4 @@
 <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
 <!-- endinject -->
 <link rel="shortcut icon" href="{{ asset('assets/images/logo2.png') }}" />
+<script src="{{ asset('assets/js/jquery.min.js') }}"></script>

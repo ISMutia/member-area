@@ -31,7 +31,7 @@
 
                             <div class="form-group">
                                 <label for="id_price">Type Price:</label>
-                                <select name="id_price" class="form-control form-group-sm">
+                                <select name="id_price" id="id_price" class="form-control form-group-sm">
                                     @foreach ($dataPrice as $d)
                                         <option value="{{ $d->id }}" @if ($dataOrder->id_price == $d->id) selected @endif>
                                             {{ $d->name }}
@@ -42,9 +42,9 @@
 
                             <div class="form-group">
                                 <label for="id_domain">Domain:</label>
-                                <select name="id_domain" class="form-control form-control-sm">
+                                <select name="id_domain" id="id_domain" class="form-control form-control-sm">
                                     @foreach ($dataDomain as $d)
-                                        <option value="{{ $d->id }}" @if ($dataOrder->id_domain == $d->id) selected @endif>
+                                        <option value="{{ $d->id }}" @if ($dataOrder->id_domain == $d->id) selected @endif data-price='{{ $d->id_price }}'>
                                             {{ $d->name }}</option>
                                     @endforeach
                                 </select>
@@ -85,4 +85,21 @@
             </div>
         </div>
     </div>
+
+    <script>
+        $(document).ready(function() {
+            $('#id_domain').change(function() {
+                let idPrice = $(this).find(':selected').data('price');
+
+                $('#id_price').val(idPrice);
+            });
+
+            $('#id_price').change(function() {
+                let idPrice = $(this).val();
+
+                $('#id_domain').find('option').removeAttr('selected');
+                $('#id_domain').find(`[data-price="${idPrice}"]`).attr('selected', 'selected');
+            });
+        });
+    </script>
 @endsection
