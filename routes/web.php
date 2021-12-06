@@ -10,6 +10,7 @@ use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\UserController;
+use Illuminate\Support\Facades\Route;
 
 // Route::get('/status', [StatusController::class, 'index']);
 // Route::get('/status/delete/{id}', [StatusController::class, 'delete']);
@@ -93,8 +94,6 @@ Route::prefix('bill')->group(function () {
     Route::post('/update', [BillController::class, 'update']);
     Route::get('/edit/{id}', [BillController::class, 'edit']);
 });
-
-use Illuminate\Support\Facades\Route;
 
 Route::get('/', [AuthController::class, 'index'])->name('login');
 Route::post('post-login', [AuthController::class, 'postLogin'])->name('login.post');
