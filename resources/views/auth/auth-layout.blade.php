@@ -19,7 +19,7 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('assets/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('assets/images/logo2.png') }}" />
 </head>
 
 <body>
@@ -30,7 +30,7 @@
                     <div class="col-lg-4 mx-auto">
                         <div class="auth-form-light text-left py-5 px-4 px-sm-5">
                             <div class="brand-logo">
-                                <img src="{{ asset('assets/images/logo.svg ') }}" alt="logo">
+                                <img src="{{ asset('assets/images/logo3.jpg ') }}" height="35">
                             </div>
                             @yield('content')
                         </div>

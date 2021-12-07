@@ -28,7 +28,7 @@ class OrderController extends Controller
         LEFT JOIN m_domain ON m_domain.id = trans_h_orders.id_domain
         LEFT JOIN m_bills ON trans_h_orders.id = m_bills.id_h_orders
         LEFT JOIN m_status ON m_status.id = m_bills.id_status
-        LEFT JOIN user ON user.id = trans_h_orders.id_customers where trans_h_orders.project_name LIKE '%".$keyword."%'");
+        LEFT JOIN user ON user.id = trans_h_orders.id_customers where trans_h_orders.project_name LIKE '%" . $keyword . "%'");
 
         return view('order.index', [
             'data' => $dataOrder,
@@ -100,7 +100,7 @@ class OrderController extends Controller
         $dataStatus = StatusModel::all();
         $dataDomain = DomainModel::all();
         $dataUser = UserModel::all();
-        $dataStatus = StatusModel::all();
+        // $dataStatus = StatusModel::all();
 
         return view('order.edit', [
             'dataPrice' => $dataPrice,
@@ -108,7 +108,7 @@ class OrderController extends Controller
             'dataDomain' => $dataDomain,
             'dataUser' => $dataUser,
             'dataOrder' => $dataOrder,
-            'dataStatus' => $dataStatus,
+            // 'dataStatus' => $dataStatus,
         ]);
     }
 
@@ -126,7 +126,7 @@ class OrderController extends Controller
         $data->save();
 
         $bill = BillModel::where('id_h_orders', $id)->first();
-        $bill->id_status = $request->id_status;
+        // $bill->id_status = $request->id_status;
         $bill->save();
 
         return redirect()->route('order.index')->withSuccess('Success update order');

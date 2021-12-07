@@ -18,7 +18,7 @@
               </div>
             <div class="form-group">
               <label>Date Birth</label>
-              <input type="text" name="date_birth" class="form-control" placeholder="Date Birth" aria-label="Date Birth" value="{{ $dataUser->date_birth }}">
+              <input type="date" name="date_birth" class="form-control" placeholder="Date Birth" aria-label="Date Birth" value="{{ $dataUser->date_birth }}">
             </div>
             <div class="form-group">
               <label>Email</label>

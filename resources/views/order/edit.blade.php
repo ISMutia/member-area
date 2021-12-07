@@ -13,7 +13,7 @@
                             @csrf
 
                             <div class="form-group">
-                                <label for="id_customers">Customers:</label>
+                                <label for="id_customers">Customers</label>
                                 <select name="id_customers" class="form-control form-group-sm">
                                     @foreach ($dataUser as $d)
                                         <option value="{{ $d->id }}" @if ($dataOrder->id_customers == $d->id) selected @endif>
@@ -30,18 +30,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="id_price">Type Price:</label>
-                                <select name="id_price" id="id_price" class="form-control form-group-sm">
-                                    @foreach ($dataPrice as $d)
-                                        <option value="{{ $d->id }}" @if ($dataOrder->id_price == $d->id) selected @endif>
-                                            {{ $d->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                            </div>
-
-                            <div class="form-group">
-                                <label for="id_domain">Domain:</label>
+                                <label for="id_domain">Domain</label>
                                 <select name="id_domain" id="id_domain" class="form-control form-control-sm">
                                     @foreach ($dataDomain as $d)
                                         <option value="{{ $d->id }}" @if ($dataOrder->id_domain == $d->id) selected @endif data-price='{{ $d->id_price }}'>
@@ -51,6 +40,17 @@
                             </div>
 
                             <div class="form-group">
+                                <label for="id_price">Type Price</label>
+                                <select name="id_price" id="id_price" class="form-control form-group-sm">
+                                    @foreach ($dataPrice as $d)
+                                        <option value="{{ $d->id }}" @if ($dataOrder->id_price == $d->id) selected @endif>
+                                            {{ $d->name }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            {{-- <div class="form-group">
                                 <label>Status :</label>
                                 <select name="id_status" class="form-control form-control-sm">
                                     @foreach ($dataStatus as $d)
@@ -58,7 +58,8 @@
                                             {{ $d->name }}</option>
                                     @endforeach
                                 </select>
-                            </div>
+                            </div> --}}
+                            
 
                              <div class="form-group">
                                 <label>Lama Pengerjaan</label>

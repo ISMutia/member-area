@@ -15,7 +15,7 @@
         </div>
 
         <div class="mt-3">
-            <button type="submit" class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">Login</button>
+            <center><button type="submit" class="btn btn-primary btn-rounded btn-fw">Login</button></center>
         </div>
 
         <div class="my-2 d-flex justify-content-between align-items-center">

@@ -12,8 +12,8 @@
             <form action="/progress/store" method="POST">
               {{csrf_field()}}
               <div class="form-group">
-                <label for="id_h_orders">Id Order:</label>
-                <select name="id_h_orders" id="class">
+                <label for="id_h_orders">Project Name</label>
+                <select name="id_h_orders" id="id_h_orders" class="form-control form-group-sm">
                   @foreach ($dataOrder as $d)
                   <option value="{{ $d->id }}">{{ $d->project_name }}</option>                    
                   @endforeach

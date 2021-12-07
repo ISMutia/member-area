@@ -11,11 +11,12 @@
             <br>
             <form action="/domain/update" method="POST">
               {{csrf_field()}}
-              <div class="form-group">
-                <label>Price Name : </label>
+              <div class="form-group" >
+                <label><h4>Price Name : 
                 <td>
                   {{ $dataDomain->price->name }}
                 </td>
+              </h4></label>
               </div>  
             <div class="form-group">
                 <input type="hidden" name="id" class="form-control" aria-label="Domain Name" value="{{ $dataDomain->id }}">

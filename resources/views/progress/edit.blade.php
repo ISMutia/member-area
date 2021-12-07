@@ -13,10 +13,11 @@
               {{csrf_field()}}
 
               <div class="form-group">
-                <label>Project Name : </label>
+                <label><h5>Project Name : 
                 <td>
                   {{ $dataProgress->order->project_name }}
                 </td>
+                </h5></label>
               </div>
               <div class="form-group">
                 <input type="hidden" name="id" class="form-control" aria-label="Domain Name" value="{{ $dataProgress->id }}">

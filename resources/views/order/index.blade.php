@@ -24,10 +24,10 @@
                       Project Name
                     </th>
                     <th>
-                      Price Name
+                      Domain Name
                     </th>
                     <th>
-                      Domain Name
+                      Price Name
                     </th>
                     <th>
                       Status Name
@@ -56,10 +56,10 @@
                       {{ $d->project_name }}
                     </td>
                     <td>
-                      {{ $d->price_name }}
+                      {{ $d->domain_name }}
                     </td>
                     <td>
-                      {{ $d->domain_name }}
+                      {{ $d->price_name }}
                     </td>
                     <td>
                       {{ $d->status_name }}

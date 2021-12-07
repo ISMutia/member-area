@@ -7,7 +7,7 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card">
           <div class="card-body">
-            <h4>Edit Order</h4>
+            <h4>Edit Bill</h4>
             <br>
             <form action="/bill/update" method="POST">
               {{csrf_field()}}
@@ -17,22 +17,24 @@
 
               </div>
             <div class="form-group">
-              <label>No Bills : </label>
+              <label><h5>No Bills : 
               <td>
                 {{ $dataBills->id }}
               </td>
+            </h5></label>
             </div>
             
             <div class="form-group">
-              <label>Project Name : </label>
+              <label><h5>Project Name : </label>
               <td>
                 {{ $dataBills->order->project_name }}
               </td>
+            </h5></label>
             </div>
 
             <div class="form-group">
               <label for="id_status">Status:</label>
-              <select name="id_status" id="class">
+              <select name="id_status" id="id_status" class="form-control form-group-sm">
                 @foreach ($dataStatus as $d)
                 <option value="{{ $d->id }}" @if ($dataBills->id_status==$d->id) {{ "selected" }}@endif> 
                     {{ $d->name }}</option>                    
