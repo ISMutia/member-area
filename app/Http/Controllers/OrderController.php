@@ -38,11 +38,11 @@ class OrderController extends Controller
 
     public function delete($id)
     {
-        $bill = BillModel::where('id_h_orders', $id)->first();
-        $bill->delete();
+        // $bill = BillModel::where('id_h_orders', $id)->first();
+        // $bill->delete();
 
-        $progress = ProgressModel::where('id_h_orders', $id)->first();
-        $progress->delete();
+        // $progress = ProgressModel::where('id_h_orders', $id)->first();
+        // $progress->delete();
 
         $dataOrder = OrderModel::find($id);
         $dataOrder->delete();
