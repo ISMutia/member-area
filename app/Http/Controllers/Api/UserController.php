@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\UserModel;
+use Exception;
 use Illuminate\Http\Request;
 
 class UserController extends Controller
@@ -72,6 +73,42 @@ class UserController extends Controller
             'status' => 'success',
             'message' => 'Data Berhasil',
         ];
+
+        return response()->json($data, 200);
+    }
+
+    public function login(Request $request)
+    {
+        $condition = [
+            'email'=>$request->email,
+            'password'=>$request->password,
+        ];
+        $dataUser = UserModel::where($condition)->first();
+
+        $data=null;
+        try{
+
+            if(strlen($dataUser->fullname)>0){
+                $data = [
+                    'status' => 'success',
+                    'message' => 'Data Berhasil',
+                    'data' => $dataUser,
+                ];
+            }
+            else{
+                $data = [
+                    'status' => 'failed',
+                    'message' => 'Username dan Password Salah',
+                    'data' => null,
+                ];
+            }
+        }catch(Exception $e){
+            $data = [
+                'status' => 'failed',
+                'message' => 'Username dan Password Salah',
+                'data' => null,
+            ];
+        }
 
         return response()->json($data, 200);
     }

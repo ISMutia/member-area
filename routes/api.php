@@ -27,6 +27,7 @@ Route::get('/userList', [UserController::class, 'index']);
 Route::post('/userAdd', [UserController::class, 'create']);
 Route::put('/userUpdate/{id}', [UserController::class, 'update']);
 Route::delete('/userDelete/{id}', [UserController::class, 'delete']);
+Route::post('/userLogin', [UserController::class, 'login']);
 
 Route::get('/testimoniList', [TestimoniController::class, 'index']);
 Route::post('/testimoniAdd', [TestimoniController::class, 'create']);
