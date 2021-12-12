@@ -84,7 +84,7 @@ class OrderController extends Controller
         $data->lama_p = $r->lama_p;
         $data->mulai_p = $r->mulai_p;
         $data->selesai_p = $r->selesai_p;
-        //$data->total_harga = $r->total_harga;
+        $data->lama_domain = $r->lama_domain;
         $data->id_domain = $r->id_domain;
         $data->id_customers = $r->id_customers;
         $data->save();
@@ -123,11 +123,12 @@ class OrderController extends Controller
         $data->lama_p = $request->lama_p;
         $data->mulai_p = $request->mulai_p;
         $data->selesai_p = $request->selesai_p;
+        $data->lama_domain = $request->lama_domain;
         $data->save();
 
-        $bill = BillModel::where('id_h_orders', $id)->first();
+        // $bill = BillModel::where('id_h_orders', $id)->first();
         // $bill->id_status = $request->id_status;
-        $bill->save();
+        // $bill->save();
 
         return redirect()->route('order.index')->withSuccess('Success update order');
     }

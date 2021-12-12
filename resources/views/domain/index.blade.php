@@ -8,7 +8,7 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
-              <h4 class="card-title card-title-dash">Domain {{ $keyword }}</h4>
+              <h4 class="card-title card-title-dash">Domain</h4>
               <div class="add-items d-flex mb-0">
                 <a href="/domain/create" class="btn btn-primary btn-sm text-white mb-0 me-0" type="button">Create New Domain</a>
               </div>
@@ -17,9 +17,7 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>
-                      Price Name
-                      </th>
+                    
                     <th>
                       Name
                     </th>
@@ -31,9 +29,6 @@
                 <tbody>
                   @foreach ($data as $d)  
                   <tr>
-                    <td>
-                      {{ $d->price_name }}
-                      </td>
                     <td>
                       {{ $d->name }}
                     </td>

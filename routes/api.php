@@ -28,6 +28,7 @@ Route::post('/userAdd', [UserController::class, 'create']);
 Route::put('/userUpdate/{id}', [UserController::class, 'update']);
 Route::delete('/userDelete/{id}', [UserController::class, 'delete']);
 Route::post('/userLogin', [UserController::class, 'login']);
+Route::post('/userRegister', [UserController::class, 'register']);
 
 Route::get('/testimoniList', [TestimoniController::class, 'index']);
 Route::post('/testimoniAdd', [TestimoniController::class, 'create']);
@@ -38,9 +39,12 @@ Route::put('/domainUpdate/{id}', [DomainController::class, 'update']);
 Route::delete('/domainDelete/{id}', [DomainController::class, 'delete']);
 
 Route::get('/orderList', [OrderController::class, 'index']);
+Route::get('/orderGetForm', [OrderController::class, 'getForm']);
+Route::get('/orderRiwayat', [OrderController::class, 'riwayat']);
 Route::post('/orderAdd', [OrderController::class, 'create']);
 Route::put('/orderUpdate/{id}', [OrderController::class, 'update']);
 Route::delete('/orderDelete/{id}', [OrderController::class, 'delete']);
+
 
 Route::get('/priceList', [PriceController::class, 'index']);
 Route::post('/priceAdd', [PriceController::class, 'create']);

@@ -112,4 +112,23 @@ class UserController extends Controller
 
         return response()->json($data, 200);
     }
+
+    public function register(Request $r)
+    {
+        $data = new UserModel();
+        $data->fullname = $r->fullname;
+        $data->date_birth = $r->date_birth;
+        $data->email = $r->email;
+        $data->password = $r->password;
+        $data->status = 'customer';
+        $data->save();
+
+        $data = [
+            'data' => null,
+            'status' => 'success',
+            'message' => 'Berhasil Register',
+        ];
+
+        return response()->json($data, 200);
+    }
 }

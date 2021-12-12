@@ -42,6 +42,9 @@
                       Selesai Pengerjaan
                     </th>
                     <th>
+                      Lama Domain
+                    </th>
+                    <th>
                       Aksi
                     </th>
                   </tr>
@@ -72,6 +75,9 @@
                     </td>
                     <td>
                       {{ $d->selesai_p }}
+                    </td>
+                    <td>
+                      {{ $d->lama_domain }}
                     </td>
 
                     <td>

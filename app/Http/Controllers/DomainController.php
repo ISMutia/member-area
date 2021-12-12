@@ -11,15 +11,11 @@ class DomainController extends Controller
 {
     public function index(Request $request)
     {
-        $keyword = $request->search;
-        $dataDomain = DB::select("SELECT m_domain.*,
-        m_price.name AS price_name
-        FROM m_domain
-        LEFT JOIN m_price ON m_price.id = m_domain.id_price where m_price.name LIKE '%".$keyword."%'");
+        $dataDomain = DomainModel::where('name', 'like', '%'.$request->search.'%')->get();
 
         return view('domain.index', [
-            'data' => $dataDomain,
-            'keyword' => $keyword,
+            'data' => $dataDomain
+            
         ]);
     }
 
@@ -33,9 +29,7 @@ class DomainController extends Controller
 
     public function create()
     {
-        $dataPrice = PriceModel::all();
-
-        return view('domain.create', ['dataPrice' => $dataPrice]);
+        return view('domain.create');
     }
 
     public function store(Request $r)
@@ -47,7 +41,6 @@ class DomainController extends Controller
         // StatusModel::create($r->all());
 
         $data = new DomainModel();
-        $data->id_price = $r->id_price;
         $data->name = $r->name;
         $data->save();
 
@@ -56,13 +49,11 @@ class DomainController extends Controller
 
     public function edit($id)
     {
-        $dataPrice = PriceModel::all();
         $dataDomain = DomainModel::find($id);
 
         return view(
             'domain.edit',
             [
-                'dataPrice' => $dataPrice,
                 'dataDomain' => $dataDomain,
             ]
         );
@@ -71,7 +62,6 @@ class DomainController extends Controller
     public function update(Request $r)
     {
         $data = DomainModel::find($r->id);
-        $data->id_price = $r->id_price;
         $data->name = $r->name;
         $data->save();
 

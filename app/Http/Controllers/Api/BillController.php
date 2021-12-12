@@ -11,8 +11,8 @@ class BillController extends Controller
     public function index()
     {
         $data = [
-            'data' => BillModel::all(),
             'status' => 'success',
+            'data' => BillModel::all(),
         ];
 
         return response()->json($data, 200);

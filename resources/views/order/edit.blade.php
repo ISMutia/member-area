@@ -33,7 +33,7 @@
                                 <label for="id_domain">Domain</label>
                                 <select name="id_domain" id="id_domain" class="form-control form-control-sm">
                                     @foreach ($dataDomain as $d)
-                                        <option value="{{ $d->id }}" @if ($dataOrder->id_domain == $d->id) selected @endif data-price='{{ $d->id_price }}'>
+                                        <option value="{{ $d->id }}" @if ($dataOrder->id_domain == $d->id) selected @endif>
                                             {{ $d->name }}</option>
                                     @endforeach
                                 </select>
@@ -77,6 +77,12 @@
                                 <label>Selesai Pengerjaan</label>
                                 <input type="date" name="selesai_p" class="form-control" placeholder="Selesai Pengerjaan"
                                     aria-label="Selesai Pengerjaan" value="{{ $dataOrder->selesai_p }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Lama Domain</label>
+                                <input type="date" name="lama_domain" class="form-control" placeholder="Lama Domain"
+                                    aria-label="Lama Domain" value="{{ $dataOrder->lama_domain }}">
                             </div>
 
                             <button type="submit" class="btn btn-primary mb-2">Submit</button>
