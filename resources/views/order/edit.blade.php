@@ -30,7 +30,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="id_domain">Domain</label>
+                                <label for="id_domain">Domain Extention</label>
                                 <select name="id_domain" id="id_domain" class="form-control form-control-sm">
                                     @foreach ($dataDomain as $d)
                                         <option value="{{ $d->id }}" @if ($dataOrder->id_domain == $d->id) selected @endif>
@@ -40,7 +40,7 @@
                             </div>
 
                             <div class="form-group">
-                                <label for="id_price">Type Price</label>
+                                <label for="id_price">Package</label>
                                 <select name="id_price" id="id_price" class="form-control form-group-sm">
                                     @foreach ($dataPrice as $d)
                                         <option value="{{ $d->id }}" @if ($dataOrder->id_price == $d->id) selected @endif>

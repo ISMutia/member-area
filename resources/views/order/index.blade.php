@@ -24,10 +24,10 @@
                       Project Name
                     </th>
                     <th>
-                      Domain Name
+                      Domain Extention
                     </th>
                     <th>
-                      Price Name
+                      Package
                     </th>
                     <th>
                       Status Name
@@ -43,6 +43,9 @@
                     </th>
                     <th>
                       Lama Domain
+                    </th>
+                    <th>
+                      Tanggal Order
                     </th>
                     <th>
                       Aksi
@@ -78,6 +81,9 @@
                     </td>
                     <td>
                       {{ $d->lama_domain }}
+                    </td>
+                    <td>
+                      {{ $d->created_at }}
                     </td>
 
                     <td>

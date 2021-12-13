@@ -9,9 +9,6 @@
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
               <h4 class="card-title card-title-dash">Progress</h4>
-              <div class="add-items d-flex mb-0">
-                <a href="/progress/create" class="btn btn-primary btn-sm text-white mb-0 me-0" type="button">Create New Progress</a>
-              </div>
             </div>
             <div class="table-responsive">
               <table class="table table-striped">
@@ -39,7 +36,6 @@
                     </td>
                     <td>
                       <a href="/progress/edit/{{ $d->id }}"class="btn btn-primary btn-sm">Edit</a>
-                      <a href="/progress/delete/{{ $d->id }}" class="btn btn-danger btn-sm">Delete</button>
                     </td>
                   </tr>
                   @endforeach
