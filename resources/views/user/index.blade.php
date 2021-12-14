@@ -35,8 +35,8 @@
                                             <td>{{ $d->password }}</td>
                                             <td>{{ $d->status }}</td>
                                             <td>
-                                                <a href="/user/edit/{{ $d->id }}" class="btn btn-primary btn-sm">Edit</a>
-                                                <a href="/user/delete/{{ $d->id }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete it?')">Delete</a>
+                                                <a href="{{ route('user.edit', ['id' => $d->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                                                <a href="{{ route('user.delete', ['id' => $d->id]) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete it?')">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach

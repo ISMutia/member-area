@@ -54,13 +54,16 @@ Route::group([
         Route::get('/edit/{id}', [DomainController::class, 'edit']);
     });
 
-    Route::prefix('user')->group(function () {
-        Route::get('/', [UserController::class, 'index']);
-        Route::get('/delete/{id}', [UserController::class, 'delete']);
-        Route::get('/create', [UserController::class, 'create']);
-        Route::post('/store', [UserController::class, 'store']);
-        Route::post('/update', [UserController::class, 'update']);
-        Route::get('/edit/{id}', [UserController::class, 'edit']);
+    Route::group([
+        'prefix' => 'user',
+        'as' => 'user.',
+    ], function () {
+        Route::get('/', [UserController::class, 'index'])->name('index');
+        Route::get('/create', [UserController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [UserController::class, 'edit'])->name('edit');
+        Route::put('/edit/{id}', [UserController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [UserController::class, 'delete'])->name('delete');
+        Route::post('/store', [UserController::class, 'store'])->name('store');
     });
 
     Route::get('/testimoni', [TestimoniController::class, 'index']);
