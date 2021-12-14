@@ -28,7 +28,7 @@
                                         <tr>
                                             <td>{{ $d->name }}</td>
                                             <td>{{ $d->price }}</td>
-                                            <td>{{ Str::limit($d->description, 100) }}</td>
+                                            <td>{{ strip_tags(Str::limit($d->description, 100)) }}</td>
                                             <td>
                                                 <a href="{{ route('price.edit', ['id' => $d->id]) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>

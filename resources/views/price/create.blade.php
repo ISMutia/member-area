@@ -23,7 +23,7 @@
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description" placeholder="Description">{{ old('description') }}</textarea>
+                                <textarea class="form-control" name="description" placeholder="Description" id="tiny-mce">{{ old('description') }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary mb-2">Submit</button>

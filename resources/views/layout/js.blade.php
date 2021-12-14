@@ -26,5 +26,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>
 
-<!-- Data table-->
+<!-- Data table -->
 <script src="{{ asset('assets/js/data-table.js') }}"></script>
+
+<!-- Tiny MCE -->
+<script src="https://cdn.tiny.cloud/1/no-api-key/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+<script>tinymce.init({selector:'#tiny-mce'});</script>

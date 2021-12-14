@@ -24,7 +24,7 @@
 
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea class="form-control" name="description">{{ $dataPrice->description }}</textarea>
+                                <textarea class="form-control" name="description" id="tiny-mce">{{ $dataPrice->description }}</textarea>
                             </div>
 
                             <button type="submit" class="btn btn-primary mb-2">Submit</button>
