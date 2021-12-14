@@ -23,6 +23,7 @@
                                         <th>Email</th>
                                         <th>Password</th>
                                         <th>Status</th>
+                                        <th>Kontak WA</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -34,6 +35,7 @@
                                             <td>{{ $d->email }}</td>
                                             <td>{{ $d->password }}</td>
                                             <td>{{ $d->status }}</td>
+                                            <td>{{ $d->contact_wa }}</td>
                                             <td>
                                                 <a href="{{ route('user.edit', ['id' => $d->id]) }}" class="btn btn-primary btn-sm">Edit</a>
                                                 <a href="{{ route('user.delete', ['id' => $d->id]) }}" class="btn btn-danger btn-sm" onclick="return confirm('Are you sure to delete it?')">Delete</a>
