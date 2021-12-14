@@ -8,13 +8,13 @@
                     <div class="card-body">
                         <div class="d-flex justify-content-between align-items-center">
                             <h4 class="card-title card-title-dash">Price</h4>
-                            <div class="add-items d-flex mb-0">
+                            <div class="add-items d-flex mb-5">
                                 <a href="{{ route('price.create') }}" class="btn btn-primary btn-sm text-white mb-0 me-0"
                                     type="button">Create New Price</a>
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped">
+                            <table class="table table-striped" id="data-table">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -34,7 +34,7 @@
                                                     class="btn btn-primary btn-sm">Edit</a>
                                                 <a href="{{ route('price.delete', ['id' => $d->id]) }}"
                                                     class="btn btn-danger btn-sm"
-                                                    onclick="return confirm('Are you sure to delete it?')">Delete</button>
+                                                    onclick="return confirm('Are you sure to delete it?')">Delete</a>
                                             </td>
                                         </tr>
                                     @endforeach
