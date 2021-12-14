@@ -130,11 +130,11 @@ class BillController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function delete($id)
-    {
-        $dataBills = BillModel::find($id);
-        $dataBills->delete();
+    // public function delete($id)
+    // {
+    //     $dataBills = BillModel::find($id);
+    //     $dataBills->delete();
 
-        return redirect('/bill');
-    }
+    //     return redirect('/bill');
+    // }
 }

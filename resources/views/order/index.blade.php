@@ -24,6 +24,9 @@
                       Project Name
                     </th>
                     <th>
+                      Domain Name
+                    </th>
+                    <th>
                       Domain Extention
                     </th>
                     <th>
@@ -48,6 +51,9 @@
                       Tanggal Order
                     </th>
                     <th>
+                      Update Tanggal Order
+                    </th>
+                    <th>
                       Aksi
                     </th>
                   </tr>
@@ -60,6 +66,9 @@
                     </td>
                     <td>
                       {{ $d->project_name }}
+                    </td>
+                    <td>
+                      {{ $d->name_domain }}
                     </td>
                     <td>
                       {{ $d->domain_name }}
@@ -84,6 +93,9 @@
                     </td>
                     <td>
                       {{ $d->created_at }}
+                    </td>
+                    <td>
+                      {{ $d->updated_at }}
                     </td>
 
                     <td>

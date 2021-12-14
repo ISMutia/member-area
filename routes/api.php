@@ -44,6 +44,8 @@ Route::get('/orderRiwayat', [OrderController::class, 'riwayat']);
 Route::post('/orderAdd', [OrderController::class, 'create']);
 Route::put('/orderUpdate/{id}', [OrderController::class, 'update']);
 Route::delete('/orderDelete/{id}', [OrderController::class, 'delete']);
+Route::get('/orderList/{id}', [OrderController::class, 'getByUserId']);
+
 
 
 Route::get('/priceList', [PriceController::class, 'index']);

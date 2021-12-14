@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use App\Models\OrderModel;
+use App\Models\ProgressModel;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
@@ -28,22 +30,58 @@ class OrderController extends Controller
         return response()->json($data, 200);
     }
 
+    public function getByUserId($id)
+    {
+        $row = DB::table('trans_h_orders')
+            ->select('trans_h_orders.*','user.fullname','m_price.name as price_name','m_domain.name as domain_name','m_status.name as status_name')
+            ->leftJoin('user', 'trans_h_orders.id_customers', '=', 'user.id')
+            ->leftJoin('m_price', 'trans_h_orders.id_price', '=', 'm_price.id')
+            ->leftJoin('m_domain', 'trans_h_orders.id_domain', '=', 'm_domain.id')
+            ->rightJoin('m_bills', 'trans_h_orders.id', '=', 'm_bills.id_h_orders')
+            ->leftJoin('m_status', 'm_bills.id_status', '=', 'm_status.id')
+            ->where('trans_h_orders.id_customers', $id)
+            ->get();
+
+        $data = [
+            'status' => 'success',
+            'data' => $row,  
+        ];
+
+        return response()->json($data, 200);
+    }
+
     public function create(Request $r)
     {
-        $data = new OrderModel();
-        $data->project_name = $r->project_name;
-        $data->id_price = $r->id_price;
-        $data->lama_p = $r->lama_p;
-        $data->mulai_p = $r->mulai_p;
-        $data->selesai_p = $r->selesai_p;
-        $data->lama_domain = $r->lama_domain;
-        $data->id_domain = $r->id_domain;
-        $data->id_customers = $r->id_customers;
-        $data->save();
+        DB::beginTransaction();
+        try{
+            $data = new OrderModel();
+            $data->project_name = $r->project_name;
+            $data->id_price = $r->id_price;
+            $data->lama_p = $r->lama_p;
+            $data->mulai_p = $r->mulai_p;
+            $data->selesai_p = $r->selesai_p;
+            $data->lama_domain = $r->lama_domain;
+            $data->id_domain = $r->id_domain;
+            $data->id_customers = $r->id_customers;
+            $data->save();
+    
+            $id = $data->id;
+            $data = new ProgressModel();
+            $data->id_h_orders = $id;
+            $data->progress = 0;
+            $data->save();
+
+            DB::commit();
+        }catch(Exception $e){
+            DB::rollBack();
+
+        }
+
 
         $data = [
             'status' => 'success',
             'message' => 'Data Berhasil',
+            'id' => $id,
             'data' => OrderModel::all(),
         ];
 

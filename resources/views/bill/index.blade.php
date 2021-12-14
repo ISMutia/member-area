@@ -51,7 +51,7 @@
                     </td>
                     <td>
                       <a href="/bill/edit/{{ $d->id }}"class="btn btn-primary btn-sm">Edit</button>
-                      <a href="/bill/delete/{{ $d->id }}" class="btn btn-danger btn-sm">Delete</button>
+                      {{-- <a href="/bill/delete/{{ $d->id }}" class="btn btn-danger btn-sm">Delete</button> --}}
                     </td>
                   </tr>
                   @endforeach

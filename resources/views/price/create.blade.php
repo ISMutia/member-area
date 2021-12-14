@@ -21,7 +21,7 @@
             </div>
             <div class="form-group">
               <label>Description</label>
-              <input type="text" name="description" class="form-control" placeholder="Description" aria-label="Description">
+              <textarea class="summernote-simple" name="description"></textarea>
             </div>
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
             </form>

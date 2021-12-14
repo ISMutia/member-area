@@ -22,7 +22,9 @@
             </div>
             <div class="form-group">
               <label>Description</label>
-              <input type="text" name="description" class="form-control" placeholder="Description" aria-label="Description" value="{{ $dataPrice->description }}">
+              <div class="col-sm-12 col-md-7">
+                <textarea class="summernote-simple" name="description">{{ $dataPrice->description }}</textarea>
+              </div>
             </div>
             <button type="submit" class="btn btn-primary mb-2">Submit</button>
             </form>

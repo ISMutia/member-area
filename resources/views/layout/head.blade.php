@@ -14,9 +14,11 @@
 <!-- Plugin css for this page -->
 <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/js/select.dataTables.min.css') }}">
+<link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <!-- End plugin css for this page -->
 <!-- inject:css -->
 <link rel="stylesheet" href="{{ asset('assets/css/vertical-layout-light/style.css') }}">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
 <!-- endinject -->
 <link rel="shortcut icon" href="{{ asset('assets/images/logo2.png') }}" />
 <script src="{{ asset('assets/js/jquery.min.js') }}"></script>

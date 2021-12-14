@@ -30,10 +30,16 @@
                             </div>
 
                             <div class="form-group">
+                                <label>Domain Name</label>
+                                <input type="text" name="name_domain" class="form-control" placeholder="Domain Name"
+                                    aria-label="Domain Name" value="{{ $dataOrder->name_domain }}">
+                            </div>
+
+                            <div class="form-group">
                                 <label for="id_domain">Domain Extention</label>
-                                <select name="id_domain" id="id_domain" class="form-control form-control-sm">
+                                <select name="domain_name" id="domain_name" class="form-control form-control-sm">
                                     @foreach ($dataDomain as $d)
-                                        <option value="{{ $d->id }}" @if ($dataOrder->id_domain == $d->id) selected @endif>
+                                        <option value="{{ $d->id }}" @if ($dataOrder->domain_name == $d->id) selected @endif>
                                             {{ $d->name }}</option>
                                     @endforeach
                                 </select>

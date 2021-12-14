@@ -57,11 +57,11 @@
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/buttons.html">Waiting</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/dropdowns.html">Active</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">On Progress</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Finish</a></li>
-          <li class="nav-item"> <a class="nav-link" href="pages/ui-features/typography.html">Failed</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/waitingProgress">Waiting</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/activeProgress">Active</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/onProgress">On Progress</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/finishProgress">Finish</a></li>
+          <li class="nav-item"> <a class="nav-link" href="/failedProgress">Failed</a></li>
         </ul>
       </div>
     </li>

@@ -8,34 +8,24 @@
         <div class="card">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
-              <h4 class="card-title card-title-dash">Domain</h4>
-              <div class="add-items d-flex mb-0">
-                <a href="/domain/create" class="btn btn-primary btn-sm text-white mb-0 me-0" type="button">Create New Domain</a>
-              </div>
+              <h4 class="card-title card-title-dash">Project Failed</h4>
             </div>
             <div class="table-responsive">
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    
                     <th>
-                      Name
-                    </th>
-                    <th>
-                      Aksi
-                    </th>
+                      Project Name
+                    </th>  
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($data as $d)  
                   <tr>
                     <td>
-                      {{ $d->name }}
+                      {{ $d->project_name }}
                     </td>
-                    <td>
-                      <a href="/domain/edit/{{ $d->id }}"class="btn btn-primary btn-sm">Edit</button>
-                      <a href="/domain/delete/{{ $d->id }}" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
+                    
                   </tr>
                   @endforeach
                 </tbody>

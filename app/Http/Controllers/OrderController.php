@@ -17,6 +17,16 @@ class OrderController extends Controller
     public function index(Request $request)
     {
         $keyword = $request->search;
+        // $dataOrder = DB::table('trans_h_orders')
+        //     ->select('trans_h_orders.*', 'm_price.name as price_name', 'm_status.name as status_name', 'm_domain.name as domain_name', 'user.fullname as customer_name')
+        //     ->leftJoin('m_price', 'trans_h_orders.id_price', '=', 'm_price.id')
+        //     ->leftJoin('m_domain', 'trans_h_orders.id_domain', '=', 'm_domain.id')
+        //     ->rightJoin('m_bills', 'trans_h_orders.id', '=', 'm_bills.id_h_orders')
+        //     ->leftJoin('m_status', 'm_bills.id_status', '=', 'm_status.id')
+        //     ->leftJoin('user', 'trans_h_orders.id_customers', '=', 'user.id')
+        //     //->where('trans_h_orders.project_name LIKE ' % " . $keyword . " % '"')
+        //     ->paginate(5);
+
         $dataOrder = DB::select("SELECT
         trans_h_orders.*,
         m_price.name AS price_name,
@@ -33,16 +43,17 @@ class OrderController extends Controller
         return view('order.index', [
             'data' => $dataOrder,
             'keyword' => $keyword,
+
         ]);
     }
 
     public function delete($id)
     {
-        // $bill = BillModel::where('id_h_orders', $id)->first();
-        // $bill->delete();
+        $bill = BillModel::where('id_h_orders', $id)->first();
+        $bill->delete();
 
-        // $progress = ProgressModel::where('id_h_orders', $id)->first();
-        // $progress->delete();
+        $progress = ProgressModel::where('id_h_orders', $id)->first();
+        $progress->delete();
 
         $dataOrder = OrderModel::find($id);
         $dataOrder->delete();
@@ -80,14 +91,17 @@ class OrderController extends Controller
         $data = new OrderModel();
         $data->project_name = $r->project_name;
         $data->id_price = $r->id_price;
+        $data->name_domain = $r->name_domain;
         $data->id_status = $r->id_status;
         $data->lama_p = $r->lama_p;
         $data->mulai_p = $r->mulai_p;
         $data->selesai_p = $r->selesai_p;
         $data->lama_domain = $r->lama_domain;
-        $data->id_domain = $r->id_domain;
+        $data->domain_name = $r->domain_name;
         $data->id_customers = $r->id_customers;
         $data->save();
+
+
 
         return redirect('/order');
     }
@@ -119,7 +133,8 @@ class OrderController extends Controller
         $data->id_customers = $request->id_customers;
         $data->project_name = $request->project_name;
         $data->id_price = $request->id_price;
-        $data->id_domain = $request->id_domain;
+        $data->name_domain = $request->name_domain;
+        $data->domain_name = $request->domain_name;
         $data->lama_p = $request->lama_p;
         $data->mulai_p = $request->mulai_p;
         $data->selesai_p = $request->selesai_p;

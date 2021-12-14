@@ -20,7 +20,7 @@
                 </h5></label>
               </div>
               <div class="form-group">
-                <input type="hidden" name="id" class="form-control" aria-label="Domain Name" value="{{ $dataProgress->id }}">
+                <input type="hidden" name="id" class="form-control" aria-label="id" value="{{ $dataProgress->id }}">
               </div>
             <div class="form-group">
               <label>Progress</label>

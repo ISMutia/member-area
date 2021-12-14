@@ -1,15 +1,20 @@
 <?php
 
+use App\Http\Controllers\activeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\failedController;
+use App\Http\Controllers\finishController;
+use App\Http\Controllers\onprogressController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\waitingController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/status', [StatusController::class, 'index']);
@@ -74,7 +79,7 @@ Route::group([
         Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
         Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
         Route::post('/store', [OrderController::class, 'store'])->name('store');
-        Route::put('/update/{id}', [OrderController::class, 'update'])->name('update');
+        Route::put('/update', [OrderController::class, 'update'])->name('update');
     });
 
     // Route::get('/price', [PriceController::class, 'index']);
@@ -89,27 +94,33 @@ Route::group([
         Route::get('/edit/{id}', [PriceController::class, 'edit']);
     });
 
-    Route::get('/progress', [ProgressController::class, 'index']);
-    Route::get('/progress/delete/{id}', [ProgressController::class, 'delete']);
+    // Route::get('/progress', [ProgressController::class, 'index']);
+    // Route::get('/progress/delete/{id}', [ProgressController::class, 'delete']);
 
     Route::prefix('progress')->group(function () {
         Route::get('/', [ProgressController::class, 'index']);
         Route::get('/delete/{id}', [ProgressController::class, 'delete']);
         Route::get('/create', [ProgressController::class, 'create']);
         Route::post('/store', [ProgressController::class, 'store']);
-        Route::post('/update', [ProgressController::class, 'update']);
         Route::get('/edit/{id}', [ProgressController::class, 'edit']);
+        Route::post('/update', [ProgressController::class, 'update']);
     });
 
     Route::prefix('bill')->group(function () {
         Route::get('/', [BillController::class, 'index']);
-        Route::get('/delete/{id}', [BillController::class, 'delete']);
+        // Route::get('/delete/{id}', [BillController::class, 'delete']);
         Route::get('/create', [BillController::class, 'create']);
         Route::post('/store', [BillController::class, 'store']);
         Route::post('/update', [BillController::class, 'update']);
         Route::get('/edit/{id}', [BillController::class, 'edit']);
     });
 });
+
+Route::get('/activeProgress', [activeController::class, 'index']);
+Route::get('/waitingProgress', [waitingController::class, 'index']);
+Route::get('/onProgress', [onprogressController::class, 'index']);
+Route::get('/failedProgress', [failedController::class, 'index']);
+Route::get('/finishProgress', [finishController::class, 'index']);
 
 // Route::get('dashboard', [AuthController::class, 'dashboard']);
 // Route::get('/', [LoginController::class, 'index']);

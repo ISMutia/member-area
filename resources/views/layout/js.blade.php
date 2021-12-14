@@ -13,9 +13,14 @@
 <script src="{{ asset('assets/js/template.js') }}"></script>
 <script src="{{ asset('assets/js/settings.js') }}"></script>
 <script src="{{ asset('assets/js/todolist.js') }}"></script>
+
 <!-- endinject -->
 <!-- Custom js for this page-->
 <script src="{{ asset('assets/js/dashboard.js') }}"></script>
 <script src="{{ asset('assets/js/Chart.roundedBarCharts.js') }}"></script>
 <script src="{{ asset('assets/js/chart.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!-- End custom js for this page-->
+
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous"></script>

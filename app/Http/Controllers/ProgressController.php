@@ -15,7 +15,7 @@ class ProgressController extends Controller
         $dataProgress = DB::select("SELECT trans_d_orders.*,
         trans_h_orders.project_name
         FROM trans_d_orders
-        LEFT JOIN trans_h_orders ON trans_h_orders.id = trans_d_orders.id_h_orders where trans_h_orders.project_name LIKE '%".$keyword."%'");
+        LEFT JOIN trans_h_orders ON trans_h_orders.id = trans_d_orders.id_h_orders where trans_h_orders.project_name LIKE '%" . $keyword . "%'");
 
         return view('progress.index', [
             'data' => $dataProgress,
@@ -58,12 +58,12 @@ class ProgressController extends Controller
     {
         $dataOrder = OrderModel::all();
         $dataProgress = ProgressModel::find($id);
-
         return view(
             'progress.edit',
             [
                 'dataOrder' => $dataOrder,
-                'dataProgress' => $dataProgress,
+                'dataProgress' => $dataProgress
+
             ]
         );
     }
