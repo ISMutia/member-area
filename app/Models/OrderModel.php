@@ -8,6 +8,17 @@ class OrderModel extends Model
 {
     protected $table = 'trans_h_orders';
 
+    protected $fillable = [
+        'project_name',
+        'id_price',
+        'lama_p',
+        'mulai_p',
+        'selesai_p',
+        'lama_domain',
+        'id_domain',
+        'id_customers',
+    ];
+
     public function customer()
     {
         return $this->belongsTo(UserModel::class, 'id_customers', 'id');
