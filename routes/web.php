@@ -44,9 +44,6 @@ Route::group([
         Route::post('/update', [StatusController::class, 'update']);
     });
 
-    // Route::get('/domain', [DomainController::class, 'index']);
-    // Route::get('/domain/delete/{id}', [DomainController::class, 'delete']);
-
     Route::prefix('domain')->group(function () {
         Route::get('/', [DomainController::class, 'index']);
         Route::get('/delete/{id}', [DomainController::class, 'delete']);
@@ -55,9 +52,6 @@ Route::group([
         Route::post('/update', [DomainController::class, 'update']);
         Route::get('/edit/{id}', [DomainController::class, 'edit']);
     });
-
-    // Route::get('/user', [UserController::class, 'index']);
-    // Route::get('/user/delete/{id}', [UserController::class, 'delete']);
 
     Route::prefix('user')->group(function () {
         Route::get('/', [UserController::class, 'index']);
@@ -82,20 +76,17 @@ Route::group([
         Route::put('/update/{id}', [OrderController::class, 'update'])->name('update');
     });
 
-    // Route::get('/price', [PriceController::class, 'index']);
-    // Route::get('/price/delete/{id}', [PriceController::class, 'delete']);
-
-    Route::prefix('price')->group(function () {
-        Route::get('/', [PriceController::class, 'index']);
-        Route::get('/delete/{id}', [PriceController::class, 'delete']);
-        Route::get('/create', [PriceController::class, 'create']);
-        Route::post('/store', [PriceController::class, 'store']);
-        Route::post('/update', [PriceController::class, 'update']);
-        Route::get('/edit/{id}', [PriceController::class, 'edit']);
+    Route::group([
+        'prefix' => 'price',
+        'as' => 'price.',
+    ], function () {
+        Route::get('/', [PriceController::class, 'index'])->name('index');
+        Route::get('/create', [PriceController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [PriceController::class, 'edit'])->name('edit');
+        Route::put('/edit/{id}', [PriceController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [PriceController::class, 'delete'])->name('delete');
+        Route::post('/store', [PriceController::class, 'store'])->name('store');
     });
-
-    // Route::get('/progress', [ProgressController::class, 'index']);
-    // Route::get('/progress/delete/{id}', [ProgressController::class, 'delete']);
 
     Route::prefix('progress')->group(function () {
         Route::get('/', [ProgressController::class, 'index']);
