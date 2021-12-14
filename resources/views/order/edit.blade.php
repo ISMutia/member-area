@@ -37,7 +37,7 @@
 
                             <div class="form-group">
                                 <label for="id_domain">Domain Extention</label>
-                                <select name="domain_name" id="domain_name" class="form-control form-control-sm">
+                                <select name="id_domain" id="id_domain" class="form-control form-control-sm">
                                     @foreach ($dataDomain as $d)
                                         <option value="{{ $d->id }}" @if ($dataOrder->domain_name == $d->id) selected @endif>
                                             {{ $d->name }}</option>
@@ -65,7 +65,7 @@
                                     @endforeach
                                 </select>
                             </div> --}}
-                            
+
 
                              <div class="form-group">
                                 <label>Lama Pengerjaan</label>

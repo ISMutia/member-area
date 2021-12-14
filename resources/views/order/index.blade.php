@@ -100,7 +100,7 @@
 
                     <td>
                       <a href="{{ route('order.edit', ['id' => $d->id]) }}"class="btn btn-primary btn-sm">Edit</button>
-                      <a href="{{ route('order.delete', ['id' => $d->id]) }}" class="btn btn-danger btn-sm">Delete</button>
+                      <a href="{{ route('order.delete', ['id' => $d->id]) }}" class="btn btn-danger btn-sm" onclick="return confirm('Yakin ingin menghapus order?')">Delete</button>
                     </td>
                   </tr>
                   @endforeach

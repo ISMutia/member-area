@@ -79,7 +79,7 @@ Route::group([
         Route::get('/edit/{id}', [OrderController::class, 'edit'])->name('edit');
         Route::get('/delete/{id}', [OrderController::class, 'delete'])->name('delete');
         Route::post('/store', [OrderController::class, 'store'])->name('store');
-        Route::put('/update', [OrderController::class, 'update'])->name('update');
+        Route::put('/update/{id}', [OrderController::class, 'update'])->name('update');
     });
 
     // Route::get('/price', [PriceController::class, 'index']);
