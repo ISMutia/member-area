@@ -56,39 +56,34 @@
                                 </select>
                             </div>
 
-                            {{-- <div class="form-group">
-                                <label>Status :</label>
-                                <select name="id_status" class="form-control form-control-sm">
-                                    @foreach ($dataStatus as $d)
-                                        <option value="{{ $d->id }}" @if ($dataOrder->bill->status->id == $d->id) selected @endif>
-                                            {{ $d->name }}</option>
-                                    @endforeach
-                                </select>
-                            </div> --}}
-
-
-                             <div class="form-group">
+                            <div class="form-group">
                                 <label>Lama Pengerjaan</label>
                                 <input type="text" name="lama_p" class="form-control" placeholder="Lama Pengerjaan"
-                                    aria-label="Lama Pengerjaan" value="{{ $dataOrder->lama_p }}">
+                                    value="{{ $dataOrder->lama_p }}">
                             </div>
 
                             <div class="form-group">
                                 <label>Mulai Pengerjaan</label>
                                 <input type="date" name="mulai_p" class="form-control" placeholder="Mulai Pengerjaan"
-                                    aria-label="Mulai Pengerjaan" value="{{ $dataOrder->mulai_p }}">
+                                    value="{{ $dataOrder->mulai_p }}">
                             </div>
 
                             <div class="form-group">
                                 <label>Selesai Pengerjaan</label>
                                 <input type="date" name="selesai_p" class="form-control" placeholder="Selesai Pengerjaan"
-                                    aria-label="Selesai Pengerjaan" value="{{ $dataOrder->selesai_p }}">
+                                    value="{{ $dataOrder->selesai_p }}">
                             </div>
 
                             <div class="form-group">
                                 <label>Lama Domain</label>
                                 <input type="date" name="lama_domain" class="form-control" placeholder="Lama Domain"
-                                    aria-label="Lama Domain" value="{{ $dataOrder->lama_domain }}">
+                                    value="{{ $dataOrder->lama_domain }}">
+                            </div>
+
+                            <div class="form-group">
+                                <label>Link Group WA</label>
+                                <input type="input" name="link_group_wa" class="form-control" placeholder="Link Group WA"
+                                    value="{{ $dataOrder->link_group_wa }}">
                             </div>
 
                             <button type="submit" class="btn btn-primary mb-2">Submit</button>

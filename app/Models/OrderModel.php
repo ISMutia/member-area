@@ -17,6 +17,7 @@ class OrderModel extends Model
         'lama_domain',
         'id_domain',
         'id_customers',
+        'link_group_wa',
     ];
 
     public function customer()

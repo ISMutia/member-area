@@ -88,15 +88,6 @@ class OrderController extends Controller
 
     public function update(Request $r, $id)
     {
-        $project_name = $r->project_name;
-        $id_price = $r->id_price;
-        $lama_p = $r->lama_p;
-        $mulai_p = $r->mulai_p;
-        $selesai_p = $r->selesai_p;
-        $lama_domain = $r->lama_domain;
-        $id_domain = $r->id_domain;
-        $id_customers = $r->id_customers;
-
         $data = OrderModel::find($id);
         $data->project_name = $r->project_name;
         $data->id_price = $r->id_price;

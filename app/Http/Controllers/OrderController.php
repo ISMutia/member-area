@@ -51,33 +51,8 @@ class OrderController extends Controller
         return redirect()->route('order.index')->withSuccess('Success delete order');
     }
 
-    public function create()
-    {
-        // $dataPrice = PriceModel::all();
-        // $dataStatus = StatusModel::all();
-        // $dataDomain = DomainModel::all();
-        // $dataUser = UserModel::all();
-        // return view(
-        //     'order.create',
-
-        //     [
-        //         'dataPrice' => $dataPrice,
-        //         'dataStatus' => $dataStatus,
-        //         'dataDomain' => $dataDomain,
-        //         'dataUser' => $dataUser
-
-        //     ]
-        // );
-    }
-
     public function store(Request $r)
     {
-        // return "coba";
-        // return $r->all();
-
-        //protected $fillable = ["name"];
-        // StatusModel::create($r->all());
-
         $data = new OrderModel();
         $data->project_name = $r->project_name;
         $data->id_price = $r->id_price;
@@ -102,7 +77,6 @@ class OrderController extends Controller
         $dataStatus = StatusModel::all();
         $dataDomain = DomainModel::all();
         $dataUser = UserModel::all();
-        // $dataStatus = StatusModel::all();
 
         return view('order.edit', [
             'dataPrice' => $dataPrice,
@@ -110,7 +84,6 @@ class OrderController extends Controller
             'dataDomain' => $dataDomain,
             'dataUser' => $dataUser,
             'dataOrder' => $dataOrder,
-            // 'dataStatus' => $dataStatus,
         ]);
     }
 
@@ -126,24 +99,22 @@ class OrderController extends Controller
             'mulai_p' => ['required'],
             'selesai_p' => ['required'],
             'lama_domain' => ['required'],
+            'link_group_wa' => ['required'],
         ]);
 
-        $data = OrderModel::find($id);
-
-        $data->id_customers = $request->id_customers;
-        $data->project_name = $request->project_name;
-        $data->id_price = $request->id_price;
-        $data->name_domain = $request->name_domain;
-        $data->id_domain = $request->id_domain;
-        $data->lama_p = $request->lama_p;
-        $data->mulai_p = $request->mulai_p;
-        $data->selesai_p = $request->selesai_p;
-        $data->lama_domain = $request->lama_domain;
-        $data->save();
-
-        // $bill = BillModel::where('id_h_orders', $id)->first();
-        // $bill->id_status = $request->id_status;
-        // $bill->save();
+        OrderModel::where('id', $id)
+            ->update([
+                'id_customers' => $request->id_customers,
+                'project_name' => $request->project_name,
+                'id_price' => $request->id_price,
+                'name_domain' => $request->name_domain,
+                'id_domain' => $request->id_domain,
+                'lama_p' => $request->lama_p,
+                'mulai_p' => $request->mulai_p,
+                'selesai_p' => $request->selesai_p,
+                'lama_domain' => $request->lama_domain,
+                'link_group_wa' => $request->link_group_wa,
+            ]);
 
         return redirect()->route('order.index')->withSuccess('Success update order');
     }
