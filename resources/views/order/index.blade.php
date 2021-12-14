@@ -25,6 +25,7 @@
                                         <th>Lama Domain</th>
                                         <th>Tanggal Order</th>
                                         <th>Update Tanggal Order</th>
+                                        <th>Link Group WA</th>
                                         <th>Aksi</th>
                                     </tr>
                                 </thead>
@@ -43,6 +44,7 @@
                                             <td>{{ $d->lama_domain }}</td>
                                             <td>{{ $d->created_at }}</td>
                                             <td>{{ $d->updated_at }}</td>
+                                            <td>{{ Str::limit($d->link_group_wa, 50) }}</td>
 
                                             <td>
                                                 <a href="{{ route('order.edit', ['id' => $d->id]) }}"
