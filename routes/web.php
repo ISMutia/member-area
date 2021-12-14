@@ -12,6 +12,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProgressController;
 use App\Http\Controllers\StatusController;
+use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\waitingController;
@@ -99,13 +100,22 @@ Route::group([
         Route::post('/store', [ProgressController::class, 'store'])->name('store');
     });
 
-    Route::prefix('bill')->group(function () {
+    Route::group([
+        'prefix' => 'bill',
+        'as' => 'bill.',
+    ], function () {
         Route::get('/', [BillController::class, 'index']);
-        // Route::get('/delete/{id}', [BillController::class, 'delete']);
         Route::get('/create', [BillController::class, 'create']);
         Route::post('/store', [BillController::class, 'store']);
         Route::post('/update', [BillController::class, 'update']);
         Route::get('/edit/{id}', [BillController::class, 'edit']);
+    });
+
+    Route::group([
+        'prefix' => 'subscribe',
+        'as' => 'subscribe.',
+    ], function () {
+        Route::get('/', [SubscribeController::class, 'index']);
     });
 });
 
