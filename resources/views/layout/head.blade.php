@@ -4,7 +4,6 @@
 <title>Member Area </title>
 <!-- plugins:css -->
 <link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/vendors/feather/feather.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendors/mdi/css/materialdesignicons.min.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendors/ti-icons/css/themify-icons.css') }}">
 <link rel="stylesheet" href="{{ asset('assets/vendors/typicons/typicons.css') }}">
@@ -13,7 +12,6 @@
 <!-- endinject -->
 <!-- Plugin css for this page -->
 <link rel="stylesheet" href="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.css') }}">
-<link rel="stylesheet" href="{{ asset('assets/js/select.dataTables.min.css') }}">
 <link href="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.css" rel="stylesheet">
 <!-- End plugin css for this page -->
 <!-- inject:css -->

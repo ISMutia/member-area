@@ -19,7 +19,7 @@ class PriceController extends Controller
         $dataPrice = PriceModel::find($id);
         $dataPrice->delete();
 
-        return redirect('/price');
+        return redirect()->route('price.index')->withSuccess('Success delete price');
     }
 
     public function create()
@@ -27,44 +27,46 @@ class PriceController extends Controller
         return view('price.create');
     }
 
-    public function store(Request $r)
+    public function store(Request $request)
     {
-        // return "coba";
-        // return $r->all();
-
-        //protected $fillable = ["name"];
-        // StatusModel::create($r->all());
+        $request->validate([
+            'name' => ['required'],
+            'price' => ['required', 'numeric'],
+            'description' => ['required'],
+        ]);
 
         $data = new PriceModel();
-        $data->name = $r->name;
-        $data->price = $r->price;
-        $data->description = $r->description;
+        $data->name = $request->name;
+        $data->price = $request->price;
+        $data->description = $request->description;
         $data->save();
 
-        return redirect('/price');
+        return redirect()->route('price.index')->withSuccess('Success add new price');
     }
 
     public function edit($id)
     {
-        $dataPrice = PriceModel::all();
         $dataPrice = PriceModel::find($id);
 
-        return view(
-            'price.edit',
-            [
-                'dataPrice' => $dataPrice,
-            ]
-        );
+        return view('price.edit', [
+            'dataPrice' => $dataPrice,
+        ]);
     }
 
-    public function update(Request $r)
+    public function update(Request $request)
     {
-        $data = PriceModel::find($r->id);
-        $data->name = $r->name;
-        $data->price = $r->price;
-        $data->description = $r->description;
+        $request->validate([
+            'name' => ['required'],
+            'price' => ['required', 'numeric'],
+            'description' => ['required'],
+        ]);
+
+        $data = PriceModel::find($request->id);
+        $data->name = $request->name;
+        $data->price = $request->price;
+        $data->description = $request->description;
         $data->save();
 
-        return redirect('/price');
+        return redirect()->route('price.index')->withSuccess('Success update price');
     }
 }

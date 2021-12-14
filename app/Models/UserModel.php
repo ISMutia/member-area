@@ -10,9 +10,12 @@ class UserModel extends Authenticatable
 
     protected $fillable = [
         'fullname',
+        'date_birth',
         'email',
         'password',
         'status',
+        'contact_wa',
+        'address',
     ];
 
     protected $hidden = [

@@ -8,6 +8,11 @@ class ProgressModel extends Model
 {
     protected $table = 'trans_d_orders';
 
+    protected $fillable = [
+        'id_h_progress',
+        'progress',
+    ];
+
     public function order()
     {
         return $this->belongsTo(OrderModel::class, 'id_h_orders');

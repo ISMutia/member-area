@@ -53,7 +53,7 @@
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
         <i class="mdi mdi-cart menu-icon"></i>
         <span class="menu-title">List Project</span>
-        <i class="menu-arrow"></i> 
+        <i class="menu-arrow"></i>
       </a>
       <div class="collapse" id="ui-basic">
         <ul class="nav flex-column sub-menu">
@@ -87,6 +87,13 @@
       </a>
     </li>
 
+    <li class="nav-item">
+      <a class="nav-link" href="/subscribe">
+        <i class="mdi mdi-update menu-icon"></i>
+        <span class="menu-title">Subscribe</span>
+      </a>
+    </li>
+
     <li class="nav-item nav-category">Users</li>
     <li class="nav-item">
       <a class="nav-link" href="/user">
@@ -94,15 +101,15 @@
         <span class="menu-title">User</span>
       </a>
     </li>
-    
+
     <li class="nav-item">
       <a class="nav-link" href="/testimoni">
         <i class="mdi mdi-comment-account menu-icon"></i>
         <span class="menu-title">Testimonial</span>
       </a>
     </li>
-    
-    
-    
+
+
+
   </ul>
 </nav>

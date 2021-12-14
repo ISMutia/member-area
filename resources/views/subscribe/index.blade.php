@@ -1,33 +1,27 @@
 @extends('layout.master')
 
 @section('content')
-{{-- {{ dd($data) }}  --}}
   <div class="content-wrapper">
     <div class="row">
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card card-rounded shadow-lg">
           <div class="card-body">
             <div class="d-flex justify-content-between align-items-center">
-              <h4 class="card-title card-title-dash">Testimoni</h4>
+              <h4 class="card-title card-title-dash">Subscribe</h4>
             </div>
             <div class="table-responsive">
               <table class="table table-striped" id="data-table" style="width: 100%">
                 <thead>
                   <tr>
-                    <th>Customer Name</th>
-                    <th>Description</th>
-                    <th>Aksi</th>
+                    <th>Project Name</th>
+                    <th>Tanggal Expire</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($data as $d)
+                  @foreach ($orders as $order)
                   <tr>
-                    <td>{{ $d->customer_name }}</td>
-                    <td>{{ $d->description }}</td>
-                    <td>
-                      {{-- <a class="btn btn-primary btn-sm">Edit</button> --}}
-                      <a href="/testimoni/delete/{{ $d->id }}" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
+                    <td>{{ $order->project_name }}</td>
+                    <td>{{ $order->lama_domain->isoFormat('DD MMMM Y') }}</td>
                   </tr>
                   @endforeach
                 </tbody>

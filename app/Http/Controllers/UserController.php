@@ -19,7 +19,7 @@ class UserController extends Controller
         $dataUser = UserModel::find($id);
         $dataUser->delete();
 
-        return redirect('/user');
+        return redirect()->route('user.index')->withSuccess('Success delete user');
     }
 
     public function create()
@@ -27,23 +27,29 @@ class UserController extends Controller
         return view('user.create');
     }
 
-    public function store(Request $r)
+    public function store(Request $request)
     {
-        // return "coba";
-        // return $r->all();
+        $request->validate([
+            'fullname' => ['required'],
+            'date_birth' => ['required'],
+            'email' => ['required', 'unique:user,email'],
+            'password' => ['required'],
+            'status' => ['required'],
+            'contact_wa' => ['required'],
+            'address' => ['required'],
+        ]);
 
-        //protected $fillable = ["name"];
-        // StatusModel::create($r->all());
+        UserModel::create([
+            'fullname' => $request->fullname,
+            'date_birth' => $request->date_birth,
+            'email' => $request->email,
+            'password' => $request->password,
+            'status' => $request->status,
+            'contact_wa' => $request->contact_wa,
+            'address' => $request->address,
+        ]);
 
-        $data = new UserModel();
-        $data->fullname = $r->fullname;
-        $data->date_birth = $r->date_birth;
-        $data->email = $r->email;
-        $data->password = $r->password;
-        $data->status = $r->status;
-        $data->save();
-
-        return redirect('/user');
+        return redirect()->route('user.index')->withSuccess('Success create new user');
     }
 
     public function edit($id)
@@ -59,16 +65,29 @@ class UserController extends Controller
         );
     }
 
-    public function update(Request $r)
+    public function update(Request $request)
     {
-        $data = UserModel::find($r->id);
-        $data->fullname = $r->fullname;
-        $data->date_birth = $r->date_birth;
-        $data->email = $r->email;
-        $data->password = $r->password;
-        $data->status = $r->status;
-        $data->save();
+        $request->validate([
+            'fullname' => ['required'],
+            'date_birth' => ['required'],
+            'email' => ['required'],
+            'password' => ['required'],
+            'status' => ['required'],
+            'contact_wa' => ['required'],
+            'address' => ['required'],
+        ]);
 
-        return redirect('/user');
+        UserModel::where('id', $request->id)
+            ->update([
+                'fullname' => $request->fullname,
+                'date_birth' => $request->date_birth,
+                'email' => $request->email,
+                'password' => $request->password,
+                'status' => $request->status,
+                'contact_wa' => $request->contact_wa,
+                'address' => $request->address,
+            ]);
+
+        return redirect()->route('user.index')->withSuccess('Success update user');
     }
 }

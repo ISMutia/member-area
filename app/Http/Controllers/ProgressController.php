@@ -15,7 +15,7 @@ class ProgressController extends Controller
         $dataProgress = DB::select("SELECT trans_d_orders.*,
         trans_h_orders.project_name
         FROM trans_d_orders
-        LEFT JOIN trans_h_orders ON trans_h_orders.id = trans_d_orders.id_h_orders where trans_h_orders.project_name LIKE '%" . $keyword . "%'");
+        LEFT JOIN trans_h_orders ON trans_h_orders.id = trans_d_orders.id_h_orders where trans_h_orders.project_name LIKE '%".$keyword."%'");
 
         return view('progress.index', [
             'data' => $dataProgress,
@@ -58,23 +58,24 @@ class ProgressController extends Controller
     {
         $dataOrder = OrderModel::all();
         $dataProgress = ProgressModel::find($id);
-        return view(
-            'progress.edit',
-            [
-                'dataOrder' => $dataOrder,
-                'dataProgress' => $dataProgress
 
-            ]
-        );
+        return view('progress.edit', [
+            'dataOrder' => $dataOrder,
+            'dataProgress' => $dataProgress,
+        ]);
     }
 
-    public function update(Request $r)
+    public function update(Request $request)
     {
-        $data = ProgressModel::find($r->id);
-        $data->id_h_orders = $r->id_h_orders;
-        $data->progress = $r->progress;
+        $request->validate([
+            'progress' => ['required', 'numeric'],
+        ]);
+
+        $data = ProgressModel::find($request->id);
+        $data->id_h_orders = $request->id;
+        $data->progress = $request->progress;
         $data->save();
 
-        return redirect('/progress');
+        return redirect('/progress')->withSuccess('Success update progress project '.$data->order->project_name);
     }
 }
