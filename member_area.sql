@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 06, 2021 at 01:31 PM
+-- Generation Time: Dec 14, 2021 at 09:24 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.4.20
 
@@ -85,11 +85,9 @@ CREATE TABLE `m_bills` (
 --
 
 INSERT INTO `m_bills` (`id`, `id_h_orders`, `bukti`, `id_status`, `total_bayar`, `created_at`, `updated_at`) VALUES
-(4, 4, NULL, 2, 7000000, NULL, '2021-12-06 05:28:08'),
-(5, 5, NULL, 2, 5000000, NULL, NULL),
-(6, 6, NULL, 3, 0, NULL, NULL),
-(7, 7, NULL, 4, 7000000, NULL, NULL),
-(15, 8, NULL, 2, 7000000, '2021-12-06 04:55:03', '2021-12-06 05:06:07');
+(1, 1, NULL, 4, 3500000, NULL, NULL),
+(2, 2, NULL, 1, 5000000, NULL, NULL),
+(3, 3, NULL, 2, 0, NULL, '2021-12-14 01:20:14');
 
 -- --------------------------------------------------------
 
@@ -99,7 +97,6 @@ INSERT INTO `m_bills` (`id`, `id_h_orders`, `bukti`, `id_status`, `total_bayar`,
 
 CREATE TABLE `m_domain` (
   `id` int(11) NOT NULL,
-  `id_price` int(11) NOT NULL,
   `name` varchar(10) NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
@@ -109,11 +106,9 @@ CREATE TABLE `m_domain` (
 -- Dumping data for table `m_domain`
 --
 
-INSERT INTO `m_domain` (`id`, `id_price`, `name`, `created_at`, `updated_at`) VALUES
-(1, 1, '.com', NULL, NULL),
-(2, 2, '.com', NULL, NULL),
-(3, 3, '.com', NULL, NULL),
-(4, 3, '.co.id', NULL, NULL);
+INSERT INTO `m_domain` (`id`, `name`, `created_at`, `updated_at`) VALUES
+(1, '.com', NULL, NULL),
+(2, '.co.id', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -137,8 +132,7 @@ CREATE TABLE `m_price` (
 INSERT INTO `m_price` (`id`, `name`, `price`, `description`, `created_at`, `updated_at`) VALUES
 (1, 'silver', 3500000, 'Perpanjangan Rp. 1.500.000 / Tahun\r\nNama Domain .Com\r\nKapasitas Penyimpanan Data Unlimited\r\nBandwidth Unlimited\r\nDesain Web Sesuai Permintaan\r\nFasilitas Halaman Admin\r\nTraining Halaman Admin\r\n1 Akun Webmail\r\nMaintenance Google Ads 1 Minggu\r\nTraining Optimasi Website', NULL, NULL),
 (2, 'gold', 5000000, 'Perpanjangan Rp. 2.500.000 / Tahun\r\nNama Domain .Com\r\nKapasitas Penyimpanan Data Unlimited\r\nBandwidth Unlimited\r\nDesain Web Sesuai Permintaan\r\nFasilitas Halaman Admin\r\nTraining Halaman Admin\r\nAkun Webmail Unlimited\r\nMaintenance Google Ads 1 Bulan\r\nTraining Optimasi Website\r\nTraining Optimasi Media Sosial', NULL, NULL),
-(3, 'platinum', 7000000, 'Perpanjangan Rp. 7.000.000 /Tahun\r\nNama Domain .Com dan .Co.Id\r\nKapasitas Penyimpanan Data Unlimited\r\nBandwidth Unlimited\r\nDesain Web Sesuai Permintaan\r\nFasilitas Halaman Admin\r\nTraining dan Modul Halaman Admin\r\nAkun Webmail Unlimited\r\nAkses Login CPanel\r\nMaintenance Google Ads 1 Bulan\r\nTraining Optimasi Website & Media Sosial\r\n', NULL, NULL),
-(5, 'mmmmmmmmmm', 6000000, 'aaaaaaaaaaaaaaaaaaaaa', '2021-12-05 23:32:56', '2021-12-06 05:03:13');
+(3, 'platinum', 7000000, 'Perpanjangan Rp. 7.000.000 /Tahun\r\nNama Domain .Com dan .Co.Id\r\nKapasitas Penyimpanan Data Unlimited\r\nBandwidth Unlimited\r\nDesain Web Sesuai Permintaan\r\nFasilitas Halaman Admin\r\nTraining dan Modul Halaman Admin\r\nAkun Webmail Unlimited\r\nAkses Login CPanel\r\nMaintenance Google Ads 1 Bulan\r\nTraining Optimasi Website & Media Sosial\r\n', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -158,11 +152,11 @@ CREATE TABLE `m_status` (
 --
 
 INSERT INTO `m_status` (`id`, `name`, `created_at`, `updated_at`) VALUES
-(1, 'active', NULL, NULL),
-(2, 'succes', NULL, NULL),
-(3, 'failed', NULL, NULL),
-(4, 'on progress', NULL, NULL),
-(13, 'kkkkkk', NULL, '2021-12-06 04:53:36');
+(1, 'Waiting', NULL, NULL),
+(2, 'Active', NULL, NULL),
+(3, 'On Progress', NULL, NULL),
+(4, 'Finished', NULL, NULL),
+(5, 'Failed', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -307,10 +301,11 @@ CREATE TABLE `trans_d_orders` (
 --
 
 INSERT INTO `trans_d_orders` (`id`, `id_h_orders`, `progress`, `created_at`, `updated_at`) VALUES
-(3, 5, 100, NULL, NULL),
-(4, 4, 90, NULL, NULL),
-(6, 6, 0, NULL, NULL),
-(7, 7, 70, NULL, NULL);
+(1, 1, 60, NULL, NULL),
+(2, 2, 70, NULL, NULL),
+(3, 3, 0, NULL, NULL),
+(4, 4, 100, NULL, NULL),
+(13, 25, 0, '2021-12-13 03:05:08', '2021-12-13 03:05:08');
 
 -- --------------------------------------------------------
 
@@ -323,10 +318,12 @@ CREATE TABLE `trans_h_orders` (
   `project_name` text NOT NULL,
   `id_customers` int(11) NOT NULL,
   `id_price` int(11) NOT NULL,
+  `name_domain` varchar(50) NOT NULL,
   `id_domain` int(11) NOT NULL,
   `lama_p` varchar(50) NOT NULL,
   `mulai_p` date NOT NULL,
   `selesai_p` date NOT NULL,
+  `lama_domain` date NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -335,12 +332,11 @@ CREATE TABLE `trans_h_orders` (
 -- Dumping data for table `trans_h_orders`
 --
 
-INSERT INTO `trans_h_orders` (`id`, `project_name`, `id_customers`, `id_price`, `id_domain`, `lama_p`, `mulai_p`, `selesai_p`, `created_at`, `updated_at`) VALUES
-(4, 'Fathforce', 1, 3, 3, '2 bulan', '2021-10-01', '2021-11-30', NULL, NULL),
-(5, 'Memberarea', 2, 2, 2, '2 bulan', '2021-10-01', '2021-11-30', NULL, NULL),
-(6, 'LacLaundry', 5, 3, 3, '2 bulan', '2021-10-01', '2021-11-30', NULL, NULL),
-(7, 'Kasir Boba', 3, 3, 2, '2 bulan', '2021-10-01', '2021-11-30', NULL, '2021-12-05 23:24:41'),
-(8, 'SmartQuran', 4, 2, 2, '2 bulan', '2021-10-01', '2021-11-30', NULL, NULL);
+INSERT INTO `trans_h_orders` (`id`, `project_name`, `id_customers`, `id_price`, `name_domain`, `id_domain`, `lama_p`, `mulai_p`, `selesai_p`, `lama_domain`, `created_at`, `updated_at`) VALUES
+(1, 'Member Area Inovindo', 1, 1, '', 1, '2 bulan', '2021-10-01', '2021-11-30', '2022-11-29', NULL, NULL),
+(2, 'Fathforce', 2, 2, '', 2, '2 bulan', '2021-10-01', '2021-11-30', '2022-11-29', NULL, NULL),
+(3, 'LacLaundry', 3, 3, '', 1, '2 bulan', '2021-10-01', '2021-11-30', '2022-11-29', NULL, NULL),
+(4, 'SmartQuran', 4, 3, '', 1, '2 bulan', '2021-12-01', '2022-02-02', '2023-12-21', NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -365,8 +361,7 @@ INSERT INTO `trans_h_testimonial` (`id`, `description`, `id_customers`, `created
 (2, 'nice', 3, NULL, NULL),
 (3, 'amazing', 2, NULL, NULL),
 (4, 'wow', 4, NULL, NULL),
-(5, 'mantap', 5, NULL, NULL),
-(6, 'good', 18, '2021-12-06 05:18:32', '2021-12-06 05:18:32');
+(5, 'mantap', 5, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -397,7 +392,7 @@ INSERT INTO `user` (`id`, `fullname`, `date_birth`, `email`, `password`, `gambar
 (4, 'putri', '2000-10-14', 'putri1234@gmail.com', '12345678', NULL, 'customer', NULL, '2021-12-02 00:00:35'),
 (5, 'doni', '1998-01-21', 'doni1234@gmail.com', '12345678', NULL, 'customer', NULL, '2021-12-02 00:00:28'),
 (6, 'admin', '2000-10-04', 'admin1234@gmail.com', '12345678', NULL, 'admin', NULL, NULL),
-(18, 'kkkkkkkk', '2000-10-09', 'hhhhh@gmail.com', '12345678', NULL, 'customer', '2021-12-05 20:42:40', '2021-12-06 05:23:00');
+(27, 'udin', '2004-12-15', 'udin123@gmail.com', '12345678', NULL, 'customer', '2021-12-12 19:48:59', '2021-12-12 19:48:59');
 
 -- --------------------------------------------------------
 
@@ -445,8 +440,7 @@ ALTER TABLE `m_bills`
 -- Indexes for table `m_domain`
 --
 ALTER TABLE `m_domain`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `id_price` (`id_price`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `m_price`
@@ -564,25 +558,25 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `m_bills`
 --
 ALTER TABLE `m_bills`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `m_domain`
 --
 ALTER TABLE `m_domain`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `m_price`
 --
 ALTER TABLE `m_price`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `m_status`
 --
 ALTER TABLE `m_status`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `oauth_clients`
@@ -606,25 +600,25 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `trans_d_orders`
 --
 ALTER TABLE `trans_d_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `trans_h_orders`
 --
 ALTER TABLE `trans_h_orders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `trans_h_testimonial`
 --
 ALTER TABLE `trans_h_testimonial`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `users`
@@ -642,12 +636,6 @@ ALTER TABLE `users`
 ALTER TABLE `m_bills`
   ADD CONSTRAINT `m_bills_ibfk_1` FOREIGN KEY (`id_h_orders`) REFERENCES `trans_h_orders` (`id`),
   ADD CONSTRAINT `m_bills_ibfk_2` FOREIGN KEY (`id_status`) REFERENCES `m_status` (`id`);
-
---
--- Constraints for table `m_domain`
---
-ALTER TABLE `m_domain`
-  ADD CONSTRAINT `m_domain_ibfk_1` FOREIGN KEY (`id_price`) REFERENCES `m_price` (`id`);
 
 --
 -- Constraints for table `trans_d_orders`
