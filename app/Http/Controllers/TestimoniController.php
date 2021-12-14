@@ -29,5 +29,6 @@ class TestimoniController extends Controller
         $dataTestimoni->delete();
 
         return redirect('/testimoni');
+        //return redirect()->route('testimoni.index')->withSuccess('Success delete testimoni');
     }
 }

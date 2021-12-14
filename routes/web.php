@@ -112,6 +112,7 @@ Route::group([
         Route::post('/store', [BillController::class, 'store']);
         Route::post('/update', [BillController::class, 'update']);
         Route::get('/edit/{id}', [BillController::class, 'edit']);
+        
     });
 
     Route::group([

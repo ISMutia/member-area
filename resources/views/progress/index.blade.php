@@ -15,7 +15,7 @@
                   <tr>
                     <th>Project Name</th>
                     <th>Progress</th>
-                    <th>Aksi</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

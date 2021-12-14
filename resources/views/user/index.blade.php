@@ -23,9 +23,9 @@
                                         <th>Email</th>
                                         <th>Password</th>
                                         <th>Status</th>
-                                        <th>Kontak WA</th>
-                                        <th>Alamat</th>
-                                        <th>Aksi</th>
+                                        <th>Contact WA</th>
+                                        <th>Address</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

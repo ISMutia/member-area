@@ -121,6 +121,7 @@ class BillController extends Controller
         $data->save();
 
         return redirect('/bill');
+        //return redirect()->route('bill.index')->withSuccess('Success update bill');
     }
 
     /**

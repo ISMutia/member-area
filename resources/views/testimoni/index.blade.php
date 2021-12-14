@@ -16,7 +16,7 @@
                   <tr>
                     <th>Customer Name</th>
                     <th>Description</th>
-                    <th>Aksi</th>
+                    <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>

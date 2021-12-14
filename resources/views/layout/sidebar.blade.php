@@ -44,14 +44,14 @@
     <li class="nav-item nav-category">Orders</li>
     <li class="nav-item">
       <a class="nav-link" href="/order">
-        <i class="mdi mdi-grid-large menu-icon"></i>
+        <i class="mdi mdi-cart menu-icon "></i>
         <span class="menu-title">List Orders</span>
       </a>
     </li>
 
     <li class="nav-item">
       <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-        <i class="mdi mdi-cart menu-icon"></i>
+        <i class="mdi mdi-format-list-bulleted menu-icon"></i>
         <span class="menu-title">List Project</span>
         <i class="menu-arrow"></i>
       </a>

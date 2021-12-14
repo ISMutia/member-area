@@ -14,7 +14,7 @@
                 <thead>
                   <tr>
                     <th>Project Name</th>
-                    <th>Tanggal Expire</th>
+                    <th>Domain Expired</th>
                   </tr>
                 </thead>
                 <tbody>

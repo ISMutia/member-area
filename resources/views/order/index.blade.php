@@ -19,14 +19,14 @@
                                         <th>Domain Extention</th>
                                         <th>Package</th>
                                         <th>Status Name</th>
-                                        <th>Lama Pengerjaan</th>
-                                        <th>Mulai Pengerjaan</th>
-                                        <th>Selesai Pengerjaan</th>
-                                        <th>Lama Domain</th>
-                                        <th>Tanggal Order</th>
-                                        <th>Update Tanggal Order</th>
+                                        <th>Work Duration</th>
+                                        <th>Start Work</th>
+                                        <th>Finish Work</th>
+                                        <th>Domain Expired</th>
+                                        <th>Date Order</th>
+                                        <th>Update Order</th>
                                         <th>Link Group WA</th>
-                                        <th>Aksi</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>

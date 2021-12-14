@@ -15,10 +15,10 @@
                                     <tr>
                                         <th>No Bills</th>
                                         <th>Project Name</th>
-                                        <th>Bukti</th>
+                                        <th>Receipt</th>
                                         <th>Status</th>
-                                        <th>Total Harga</th>
-                                        <th>Aksi</th>
+                                        <th>Payment</th>
+                                        <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
