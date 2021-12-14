@@ -1,7 +1,6 @@
 @extends('layout.master')
 
 @section('content')
-{{-- {{ dd($data) }}  --}}
   <div class="content-wrapper">
     <div class="row">
       <div class="col-lg-12 grid-margin stretch-card">
@@ -14,28 +13,18 @@
               <table class="table table-striped">
                 <thead>
                   <tr>
-                    <th>
-                      Project Name
-                    </th>
-                    <th>
-                      Progress
-                    </th>
-                    <th>
-                      Aksi
-                    </th>
+                    <th>Project Name</th>
+                    <th>Progress</th>
+                    <th>Aksi</th>
                   </tr>
                 </thead>
                 <tbody>
-                  @foreach ($data as $d)  
+                  @foreach ($data as $d)
                   <tr>
+                    <td>{{ $d->project_name }}</td>
+                    <td>{{ $d->progress }} %</td>
                     <td>
-                      {{ $d->project_name }}
-                    </td>
-                    <td>
-                      {{ $d->progress }}
-                    </td>
-                    <td>
-                      <a href="/progress/edit/{{ $d->id }}"class="btn btn-primary btn-sm">Edit</a>
+                      <a href="{{ route('progress.edit', ['id' => $d->id]) }}"class="btn btn-primary btn-sm">Edit</a>
                     </td>
                   </tr>
                   @endforeach

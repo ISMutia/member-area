@@ -88,13 +88,15 @@ Route::group([
         Route::post('/store', [PriceController::class, 'store'])->name('store');
     });
 
-    Route::prefix('progress')->group(function () {
-        Route::get('/', [ProgressController::class, 'index']);
-        Route::get('/delete/{id}', [ProgressController::class, 'delete']);
-        Route::get('/create', [ProgressController::class, 'create']);
-        Route::post('/store', [ProgressController::class, 'store']);
-        Route::get('/edit/{id}', [ProgressController::class, 'edit']);
-        Route::post('/update', [ProgressController::class, 'update']);
+    Route::group([
+        'prefix' => 'progress',
+        'as' => 'progress.',
+    ], function () {
+        Route::get('/', [ProgressController::class, 'index'])->name('index');
+        Route::get('/create', [ProgressController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [ProgressController::class, 'edit'])->name('edit');
+        Route::put('/edit/{id}', [ProgressController::class, 'update'])->name('update');
+        Route::post('/store', [ProgressController::class, 'store'])->name('store');
     });
 
     Route::prefix('bill')->group(function () {
