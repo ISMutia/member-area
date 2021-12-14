@@ -21,8 +21,22 @@ class DashboardController extends Controller
         LEFT JOIN m_bills ON trans_h_orders.id = m_bills.id_h_orders
         LEFT JOIN m_status ON m_status.id = m_bills.id_status where user.fullname LIKE '%".$keyword."%'");
 
+        $dataStatus = DB::select('SELECT *, (SELECT count(*) FROM m_bills WHERE id_status = m_status.id) jumlah FROM m_status');
+        foreach ($dataStatus as &$status) {
+            $status->color = 'text-success';
+
+            if ('Waiting' === $status->name) {
+                $status->color = 'text-warning';
+            } elseif ('Finished' === $status->name) {
+                $status->color = 'text-primary';
+            } elseif ('Failed' === $status->name) {
+                $status->color = 'text-danger';
+            }
+        }
+
         return view('dashboard.index', [
             'data' => $dataDashboard,
+            'status' => $dataStatus,
             'keyword' => $keyword,
             'fullname' => Session::get('fullname'),
         ]);

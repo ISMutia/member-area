@@ -2,50 +2,49 @@
 
 @section('content')
     <div class="content-wrapper">
-        <div class="col-md-6 col-lg-12 grid-margin stretch-card">
-            <div class="card bg-primary card-rounded">
-              <div class="card-body pb-0">
-                <h4 class="card-title card-title-dash text-white mb-4">Detail Project</h4>
-                <div class="row">
-                    <div class="row">
-                        <div class="col-sm-12">
-                          <div class="statistics-details d-flex align-items-center justify-content-between">
-                            <div>
-                              <p class="statistics-title text-white" >Waiting</p>
-                              <h3 class="rate-percentage text-success">10</h3>
-                            </div>
-                            <div>
-                              <p class="statistics-title text-white">Active</p>
-                              <h3 class="rate-percentage text-danger d-flex">3</h3>
-                            </div>
-                            <div>
-                              <p class="statistics-title text-white">On Progress</p>
-                              <h3 class="rate-percentage text-success">9</h3>
-                            </div>
-                            <div>
-                                <p class="statistics-title text-white">Finish</p>
-                                <h3 class="rate-percentage text-danger d-flex">5</h3>
-                            </div>
-                            <div>
-                                <p class="statistics-title text-white">Failed</p>
-                                <h3 class="rate-percentage text-success">7</h3>
-
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                  <div class="col-sm-8">
-                    <div class="status-summary-chart-wrapper pb-4"><div class="chartjs-size-monitor"><div class="chartjs-size-monitor-expand"><div class=""></div></div><div class="chartjs-size-monitor-shrink"><div class=""></div></div></div>
-                      {{-- <canvas id="status-summary" width="148" height="99" style="display: block; height: 66px; width: 99px;" class="chartjs-render-monitor"></canvas> --}}
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
         <div class="row">
             <div class="col-lg-12 grid-margin stretch-card">
-                <div class="card card-rounded">
+                <div class="card card-rounded shadow-lg">
+                    <div class="card-body">
+                        <h4 class="card-title card-title-dash mb-4">Detail Project</h4>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <div class="statistics-details d-flex align-items-center justify-content-between">
+                                    @foreach ($status as $item)
+                                        <div>
+                                            <p class="statistics-title">{{ $item->name }}</p>
+                                            <h3 class="rate-percentage {{ $item->color }}">{{ $item->jumlah }}</h3>
+                                        </div>
+                                    @endforeach
+{{--
+                                    <div>
+                                        <p class="statistics-title">Active</p>
+                                        <h3 class="rate-percentage text-success">3</h3>
+                                    </div>
+
+                                    <div>
+                                        <p class="statistics-title">On Progress</p>
+                                        <h3 class="rate-percentage text-success">9</h3>
+                                    </div>
+
+                                    <div>
+                                        <p class="statistics-title">Finish</p>
+                                        <h3 class="rate-percentage text-primary">5</h3>
+                                    </div>
+
+                                    <div>
+                                        <p class="statistics-title">Failed</p>
+                                        <h3 class="rate-percentage text-danger">7</h3>
+                                    </div> --}}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-12 grid-margin stretch-card">
+                <div class="card card-rounded shadow-lg">
                     <div class="card-body">
                         <div class="d-sm-flex justify-content-between align-items-start">
                             <div>
@@ -66,9 +65,7 @@
                                 <tbody>
                                     @foreach ($data as $d)
                                         <tr>
-                                            <td>
-                                                <h6>{{ $d->fullname }}</h6>
-                                            </td>
+                                            <td><h6>{{ $d->fullname }}</h6></td>
                                             <td>{{ $d->project_name }}</td>
                                             <td>
                                                 <div>
