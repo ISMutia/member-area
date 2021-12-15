@@ -57,6 +57,7 @@ Route::get('/progressList', [ProgressController::class, 'index']);
 Route::post('/progressAdd', [ProgressController::class, 'create']);
 Route::put('/progressUpdate/{id}', [ProgressController::class, 'update']);
 Route::delete('/progressDelete/{id}', [ProgressController::class, 'delete']);
+Route::get('/progressList/{id}', [ProgressController::class, 'getByUserId']);
 
 Route::get('/statusList', [StatusController::class, 'index']);
 Route::post('/statusAdd', [StatusController::class, 'create']);

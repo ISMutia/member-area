@@ -23,6 +23,22 @@ class ProgressController extends Controller
         return response()->json($data, 200);
     }
 
+    public function getByUserId($id)
+    {
+        $row = DB::table('trans_d_orders')
+            ->select('trans_d_orders.*','trans_h_orders.project_name')
+            ->leftJoin('trans_h_orders', 'trans_d_orders.id_h_orders', '=', 'trans_h_orders.id')
+            ->where('trans_h_orders.id_customers', $id)
+            ->get();
+
+        $data = [
+            'status' => 'success',
+            'data' => $row,
+        ];
+
+        return response()->json($data, 200);
+    }
+
     public function create(Request $r)
     {
         $data = new ProgressModel();
