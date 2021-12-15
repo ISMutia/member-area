@@ -1,21 +1,17 @@
 <?php
 
-use App\Http\Controllers\activeController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
-use App\Http\Controllers\failedController;
-use App\Http\Controllers\finishController;
-use App\Http\Controllers\onprogressController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProgressController;
+use App\Http\Controllers\ProjectController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\SubscribeController;
 use App\Http\Controllers\TestimoniController;
 use App\Http\Controllers\UserController;
-use App\Http\Controllers\waitingController;
 use Illuminate\Support\Facades\Route;
 
 // Route::get('/status', [StatusController::class, 'index']);
@@ -96,6 +92,12 @@ Route::group([
         'prefix' => 'progress',
         'as' => 'progress.',
     ], function () {
+        Route::get('/active', [ProjectController::class, 'active'])->name('active');
+        Route::get('/waiting', [ProjectController::class, 'waiting'])->name('waiting');
+        Route::get('/onProgress', [ProjectController::class, 'onProgress'])->name('onProgress');
+        Route::get('/failed', [ProjectController::class, 'failed'])->name('failed');
+        Route::get('/finish', [ProjectController::class, 'finish'])->name('finish');
+
         Route::get('/', [ProgressController::class, 'index'])->name('index');
         Route::get('/create', [ProgressController::class, 'create'])->name('create');
         Route::get('/edit/{id}', [ProgressController::class, 'edit'])->name('edit');
@@ -112,7 +114,6 @@ Route::group([
         Route::post('/store', [BillController::class, 'store']);
         Route::post('/update', [BillController::class, 'update']);
         Route::get('/edit/{id}', [BillController::class, 'edit']);
-        
     });
 
     Route::group([
@@ -122,13 +123,3 @@ Route::group([
         Route::get('/', [SubscribeController::class, 'index']);
     });
 });
-
-Route::get('/activeProgress', [activeController::class, 'index']);
-Route::get('/waitingProgress', [waitingController::class, 'index']);
-Route::get('/onProgress', [onprogressController::class, 'index']);
-Route::get('/failedProgress', [failedController::class, 'index']);
-Route::get('/finishProgress', [finishController::class, 'index']);
-
-// Route::get('dashboard', [AuthController::class, 'dashboard']);
-// Route::get('/', [LoginController::class, 'index']);
-// Route::get('/login', [LoginController::class, 'index']);
