@@ -3,139 +3,58 @@
 namespace App\Http\Controllers;
 
 use App\Models\BillModel;
-use App\Models\OrderModel;
 use App\Models\StatusModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Storage;
 
 class BillController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->search;
-        $dataBills = DB::select("SELECT m_bills.*,
-        trans_h_orders.project_name,
-        m_status.name AS name_status
-        FROM m_bills
-        LEFT JOIN trans_h_orders ON trans_h_orders.id = m_bills.id_h_orders
-        LEFT JOIN m_status ON m_status.id = m_bills.id_status where trans_h_orders.project_name LIKE '%".$keyword."%'");
+        $data = BillModel::all();
 
         return view('bill.index', [
-            'data' => $dataBills,
-            'keyword' => $keyword,
+            'data' => $data,
         ]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $dataOrder = OrderModel::all();
-        $dataStatus = StatusModel::all();
-
-        return view(
-            'bill.create',
-            [
-                'dataOrder' => $dataOrder,
-                'dataStatus' => $dataStatus,
-            ]
-        );
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $r)
-    {
-        $data = new BillModel();
-        $data->id_h_orders = $r->id_h_orders;
-        $data->bukti = $r->bukti;
-        $data->id_status = $r->id_status;
-        $data->total_bayar = $r->total_bayar;
-        $data->save();
-
-        return redirect('/bill');
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
-        $dataOrder = OrderModel::all();
+        $data = BillModel::find($id);
         $dataStatus = StatusModel::all();
-        $dataBills = BillModel::find($id);
 
-        return view(
-            'bill.edit',
-            [
-                'dataOrder' => $dataOrder,
-                'dataStatus' => $dataStatus,
-                'dataBills' => $dataBills,
-            ]
-        );
+        return view('bill.edit', [
+            'data' => $data,
+            'dataStatus' => $dataStatus,
+        ]);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param \Illuminate\Http\Request $request
-     * @param int                      $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $r)
+    public function update(Request $request, $id)
     {
-        // dd($r->all());
-        $data = BillModel::find($r->id);
-        $data->id_h_orders = $r->id_h_orders;
-        $data->id_status = $r->id_status;
-        $data->total_bayar = $r->total_bayar;
-        $data->save();
+        $request->validate([
+            'id_status' => ['required'],
+            'bukti' => ['sometimes'],
+            'total_bayar' => ['required', 'numeric'],
+        ]);
 
-        return redirect('/bill');
-        //return redirect()->route('bill.index')->withSuccess('Success update bill');
+        $bill = BillModel::find($id);
+        $bill->id_status = $request->id_status;
+        $bill->total_bayar = $request->total_bayar;
+
+        if ($request->hasFile('bukti')) {
+            // delete old data
+            if (Storage::disk('public')->exists('bukti-pembayaran/'.$bill->bukti)) {
+                Storage::disk('public')->delete('bukti-pembayaran/'.$bill->bukti);
+            }
+
+            $file = $request->file('bukti');
+            $fileName = uniqid('bukti-').'.'.$file->getClientOriginalExtension();
+            Storage::disk('public')->putFileAs('bukti-pembayaran', $file, $fileName);
+        }
+
+        $bill->bukti = $fileName;
+        $bill->save();
+
+        return redirect()->route('bill.index')->withSuccess('Success update bill');
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param int $id
-     *
-     * @return \Illuminate\Http\Response
-     */
-    // public function delete($id)
-    // {
-    //     $dataBills = BillModel::find($id);
-    //     $dataBills->delete();
-
-    //     return redirect('/bill');
-    // }
 }

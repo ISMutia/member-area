@@ -1,4 +1,3 @@
-(function($) {
-  'use strict';
-  $('.dropify').dropify();
+(function ($) {
+    $('.dropify').dropify();
 })(jQuery);

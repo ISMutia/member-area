@@ -13,16 +13,22 @@
               <table class="table table-striped" id="data-table" style="width: 100%">
                 <thead>
                   <tr>
+                    <th>Customer Name</th>
                     <th>Project Name</th>
-                    <th>Domain Expired</th>
+                    <th>Expired At</th>
+                    <th>Package</th>
+                    <th>Contact WA</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($orders as $order)
-                  <tr>
-                    <td>{{ $order->project_name }}</td>
-                    <td>{{ $order->lama_domain->isoFormat('DD MMMM Y') }}</td>
-                  </tr>
+                    <tr>
+                      <td>{{ $order->customer->fullname }}</td>
+                      <td>{{ $order->project_name }}</td>
+                      <td>{{ $order->lama_domain->isoFormat('DD MMMM Y') }}</td>
+                      <td>{{ $order->price->name }}</td>
+                      <td>{{ $order->customer->contact_wa }}</td>
+                    </tr>
                   @endforeach
                 </tbody>
               </table>
