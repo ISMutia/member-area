@@ -14,7 +14,7 @@
                             </div>
                         </div>
                         <div class="table-responsive">
-                            <table class="table table-striped" id="data-table">
+                            <table class="table table-striped" id="data-table" style="width: 100%">
                                 <thead>
                                     <tr>
                                         <th>Name</th>
@@ -28,7 +28,7 @@
                                         <tr>
                                             <td>{{ $d->name }}</td>
                                             <td>{{ $d->price }}</td>
-                                            <td>{{ strip_tags(Str::limit($d->description, 100)) }}</td>
+                                            <td>{{ strip_tags(Str::limit($d->description, 50)) }}</td>
                                             <td>
                                                 <a href="{{ route('price.edit', ['id' => $d->id]) }}"
                                                     class="btn btn-primary btn-sm">Edit</a>
