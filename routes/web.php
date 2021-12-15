@@ -116,11 +116,10 @@ Route::group([
         'prefix' => 'bill',
         'as' => 'bill.',
     ], function () {
-        Route::get('/', [BillController::class, 'index']);
-        Route::get('/create', [BillController::class, 'create']);
-        Route::post('/store', [BillController::class, 'store']);
-        Route::post('/update', [BillController::class, 'update']);
-        Route::get('/edit/{id}', [BillController::class, 'edit']);
+        Route::get('/', [BillController::class, 'index'])->name('index');
+        Route::get('/create', [BillController::class, 'create'])->name('create');
+        Route::get('/edit/{id}', [BillController::class, 'edit'])->name('edit');
+        Route::put('/edit/{id}', [BillController::class, 'update'])->name('update');
     });
 
     Route::group([

@@ -7,6 +7,8 @@
 <script src="{{ asset('assets/vendors/datatables.net-bs4/jquery.dataTables.js') }}"></script>
 <script src="{{ asset('assets/vendors/datatables.net-bs4/dataTables.bootstrap4.js') }}"></script>
 <script src="{{ asset('assets/vendors/progressbar.js/progressbar.min.js') }}"></script>
+<script src="{{ asset('assets/vendors/dropify/dropify.min.js') }}"></script>
+<script src="{{ asset('assets/js/dropify.js') }}"></script>
 
 <!-- End plugin js for this page -->
 <!-- inject:js -->
