@@ -62,8 +62,15 @@ Route::group([
         Route::post('/store', [UserController::class, 'store'])->name('store');
     });
 
-    Route::get('/testimoni', [TestimoniController::class, 'index']);
-    Route::get('/testimoni/delete/{id}', [TestimoniController::class, 'delete']);
+    Route::group([
+        'prefix' => 'testimoni',
+        'as' => 'testimoni.',
+    ], function () {
+        Route::get('/', [TestimoniController::class, 'index'])->name('index');
+        Route::get('/edit/{id}', [TestimoniController::class, 'edit'])->name('edit');
+        Route::put('/edit/{id}', [TestimoniController::class, 'update'])->name('update');
+        Route::get('/delete/{id}', [TestimoniController::class, 'delete'])->name('delete');
+    });
 
     Route::group([
         'prefix' => 'order',

@@ -1,7 +1,6 @@
 @extends('layout.master')
 
 @section('content')
-{{-- {{ dd($data) }}  --}}
   <div class="content-wrapper">
     <div class="row">
       <div class="col-lg-12 grid-margin stretch-card">
@@ -16,19 +15,22 @@
                   <tr>
                     <th>Customer Name</th>
                     <th>Description</th>
+                    <th>Status</th>
                     <th>Action</th>
                   </tr>
                 </thead>
                 <tbody>
                   @foreach ($data as $d)
-                  <tr>
-                    <td>{{ $d->customer_name }}</td>
-                    <td>{{ $d->description }}</td>
-                    <td>
-                      {{-- <a class="btn btn-primary btn-sm">Edit</button> --}}
-                      <a href="/testimoni/delete/{{ $d->id }}" class="btn btn-danger btn-sm">Delete</button>
-                    </td>
-                  </tr>
+                    <tr>
+                      <td>{{ $d->customer->fullname }}</td>
+                      <td>{{ $d->description }}</td>
+                      <td>{{ $d->status }}</td>
+                      <td>
+                        <a href="{{ route('testimoni.edit', ['id' => $d->id]) }}" class="btn btn-primary btn-sm">Edit</a>
+                        <a href="{{ route('testimoni.delete', ['id' => $d->id]) }}" class="btn btn-danger btn-sm"
+                          onclick="return confirm('Are you sure to delete it?')">Delete</a>
+                      </td>
+                    </tr>
                   @endforeach
                 </tbody>
               </table>

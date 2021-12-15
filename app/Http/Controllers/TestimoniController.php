@@ -3,24 +3,47 @@
 namespace App\Http\Controllers;
 
 use App\Models\TestimoniModel;
+use App\Models\UserModel;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 
 class TestimoniController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->search;
-        $dataTestimoni = DB::select("SELECT
-        trans_h_testimonial.*,
-        user.fullname AS customer_name
-        FROM trans_h_testimonial
-        LEFT JOIN user ON user.id = trans_h_testimonial.id_customers where user.fullname LIKE '%".$keyword."%'");
+        $data = TestimoniModel::all();
 
         return view('testimoni.index', [
-            'data' => $dataTestimoni,
-            'keyword' => $keyword,
+            'data' => $data,
         ]);
+    }
+
+    public function edit($id)
+    {
+        $data = TestimoniModel::find($id);
+        $dataUser = UserModel::all();
+
+        return view('testimoni.edit', [
+            'data' => $data,
+            'dataUser' => $dataUser,
+        ]);
+    }
+
+    public function update($id, Request $request)
+    {
+        $request->validate([
+            'id_customers' => ['required'],
+            'status' => ['required'],
+            'description' => ['required'],
+        ]);
+
+        TestimoniModel::where('id', $id)
+            ->update([
+                'id_customers' => $request->id_customers,
+                'status' => $request->status,
+                'description' => $request->description,
+            ]);
+
+        return redirect()->route('testimoni.index')->withSuccess('Success update testimoni');
     }
 
     public function delete($id)
@@ -28,7 +51,6 @@ class TestimoniController extends Controller
         $dataTestimoni = TestimoniModel::find($id);
         $dataTestimoni->delete();
 
-        return redirect('/testimoni');
-        //return redirect()->route('testimoni.index')->withSuccess('Success delete testimoni');
+        return redirect()->route('testimoni.index')->withSuccess('Success delete testimoni');
     }
 }
