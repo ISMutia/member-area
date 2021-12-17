@@ -64,6 +64,8 @@ class OrderController extends Controller
                 'lama_domain' => $r->lama_domain,
                 'id_domain' => $r->id_domain,
                 'id_customers' => $r->id_customers,
+                'name_domain' => $r->name_domain,
+                'link_group_wa' => $r->link_group_wa,
             ]);
 
             ProgressModel::create([
