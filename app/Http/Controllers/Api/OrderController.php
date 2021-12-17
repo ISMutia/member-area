@@ -74,18 +74,24 @@ class OrderController extends Controller
             ]);
 
             DB::commit();
+            $data = [
+                'status' => 'success',
+                'message' => 'Data Berhasil',
+                'id' => $order->id,
+                'data' => OrderModel::all(),
+            ];
+    
+            return response()->json($data, 200);
+            
         } catch (Exception $e) {
             DB::rollBack();
+            $data = [
+                'status' => 'failed',
+                'message' => $e->getMessage(),
+            ];
+    
+            return response()->json($data, 200);
         }
-
-        $data = [
-            'status' => 'success',
-            'message' => 'Data Berhasil',
-            'id' => $order->id,
-            'data' => OrderModel::all(),
-        ];
-
-        return response()->json($data, 200);
     }
 
     public function update(Request $r, $id)
