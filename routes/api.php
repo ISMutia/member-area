@@ -40,7 +40,7 @@ Route::delete('/domainDelete/{id}', [DomainController::class, 'delete']);
 
 Route::get('/orderList', [OrderController::class, 'index']);
 Route::get('/orderGetForm', [OrderController::class, 'getForm']);
-Route::get('/orderRiwayat', [OrderController::class, 'riwayat']);
+Route::get('/orderRiwayat/{id}', [OrderController::class, 'riwayat']);
 Route::post('/orderAdd', [OrderController::class, 'create']);
 Route::put('/orderUpdate/{id}', [OrderController::class, 'update']);
 Route::delete('/orderDelete/{id}', [OrderController::class, 'delete']);
@@ -68,6 +68,7 @@ Route::get('/billList', [BillController::class, 'index']);
 Route::post('/billAdd', [BillController::class, 'create']);
 Route::put('/billUpdate/{id}', [BillController::class, 'update']);
 Route::delete('/billDelete/{id}', [BillController::class, 'delete']);
+Route::get('/billList/{id}', [BillController::class, 'getByUserId']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

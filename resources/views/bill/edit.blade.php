@@ -40,13 +40,13 @@
               </div>
 
               <div class="form-group">
-                <label>Total Bayar</label>
+                <label>Total Price</label>
                 <input type="text" name="total_bayar" class="form-control" placeholder="Total Bayar"
                   value="{{ $data->total_bayar }}">
               </div>
 
               <div class="form-group">
-                  <label>Bukti Pembayaran</label>
+                  <label>Receipt</label>
                   <input type="file" class="dropify" name="bukti" accept="image/*" data-default-file="{{ $data->buktiUrl }}">
               </div>
 

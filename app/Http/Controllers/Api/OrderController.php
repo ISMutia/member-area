@@ -3,11 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\BillModel;
 use App\Models\OrderModel;
 use App\Models\ProgressModel;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Carbon\Carbon;
 
 class OrderController extends Controller
 {
@@ -37,7 +39,7 @@ class OrderController extends Controller
             ->leftJoin('user', 'trans_h_orders.id_customers', '=', 'user.id')
             ->leftJoin('m_price', 'trans_h_orders.id_price', '=', 'm_price.id')
             ->leftJoin('m_domain', 'trans_h_orders.id_domain', '=', 'm_domain.id')
-            ->rightJoin('m_bills', 'trans_h_orders.id', '=', 'm_bills.id_h_orders')
+            ->leftJoin('m_bills', 'trans_h_orders.id', '=', 'm_bills.id_h_orders')
             ->leftJoin('m_status', 'm_bills.id_status', '=', 'm_status.id')
             ->where('trans_h_orders.id_customers', $id)
             ->get();
@@ -61,16 +63,37 @@ class OrderController extends Controller
                 'lama_p' => $r->lama_p,
                 'mulai_p' => $r->mulai_p,
                 'selesai_p' => $r->selesai_p,
-                'lama_domain' => $r->lama_domain,
+                'lama_domain' => Carbon::now(),
                 'id_domain' => $r->id_domain,
                 'id_customers' => $r->id_customers,
                 'name_domain' => $r->name_domain,
                 'link_group_wa' => $r->link_group_wa,
+
             ]);
 
             ProgressModel::create([
                 'id_h_orders' => $order->id,
                 'progress' => 0,
+            ]);
+
+            
+            $id_price = $r->id_price;
+            $totalBayar = 0;
+
+            if($id_price == 1){
+                $totalBayar = 3500000;
+            }elseif($id_price == 2){
+                $totalBayar = 5000000;
+            }elseif($id_price == 3){
+                $totalBayar = 20000000;
+            }
+
+            BillModel::create([
+                'id_h_orders' => $order->id,
+                //'bukti' => 'null',
+                'id_status' => 1,
+                'total_bayar' => $totalBayar
+               
             ]);
 
             DB::commit();
@@ -148,13 +171,14 @@ class OrderController extends Controller
         return response()->json($data, 200);
     }
 
-    public function riwayat()
+    public function riwayat($id)
     {
         $row = DB::table('trans_h_orders')
             ->select('trans_h_orders.*', 'm_bills.id as no_bill', 'm_price.name as price_name', 'm_status.name as status_name')
             ->leftJoin('m_price', 'trans_h_orders.id_price', '=', 'm_price.id')
             ->rightJoin('m_bills', 'trans_h_orders.id', '=', 'm_bills.id_h_orders')
             ->leftJoin('m_status', 'm_bills.id_status', '=', 'm_status.id')
+            ->where('trans_h_orders.id_customers', $id)
             ->get();
 
         $data = [
@@ -164,4 +188,5 @@ class OrderController extends Controller
 
         return response()->json($data, 200);
     }
+
 }

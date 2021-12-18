@@ -30,7 +30,6 @@ class TestimoniController extends Controller
         $data->description = $r->description;
         $data->id_customers = $r->id_customers;
         $data->status = 'active';
-
         $data->save();
 
         $data = [

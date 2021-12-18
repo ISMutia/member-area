@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\BillModel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class BillController extends Controller
 {
@@ -17,6 +18,41 @@ class BillController extends Controller
 
         return response()->json($data, 200);
         //return BillModel::all();
+    }
+
+    public function getByUserId($id)
+    {
+        $row = DB::table('m_bills')
+            ->select('m_bills.*', 'trans_h_orders.project_name', 'm_price.name as price_name')
+            ->leftJoin('m_bills', 'trans_h_orders.id', '=', 'm_bills.id_h_orders')
+            ->leftJoin('user', 'trans_h_orders.id_customers', '=', 'user.id')
+            ->leftJoin('m_price', 'trans_h_orders.id_price', '=', 'm_price.id')
+            ->where('trans_h_orders.id_customers', $id)
+            ->get();
+
+        $data = [
+            'status' => 'success',
+            'data' => $row,
+        ];
+
+        return response()->json($data, 200);
+    }
+
+    public function detailBill()
+    {
+        $row = DB::table('m_bills')
+            ->select('m_bills.*', 'user.fullname', 'trans_h_orders.project_name,name_domain',  'm_price.name as price_name')
+            ->leftJoin('m_bills', 'trans_h_orders.id', '=', 'm_bills.id_h_orders')
+            ->leftJoin('user', 'trans_h_orders.id_customers', '=', 'user.id')
+            ->leftJoin('m_price', 'trans_h_orders.id_price', '=', 'm_price.id')
+            ->get();
+
+        $data = [
+            'status' => 'success',
+            'data' => $row,
+        ];
+
+        return response()->json($data, 200);
     }
 
     public function create(Request $r)

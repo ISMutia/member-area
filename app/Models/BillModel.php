@@ -9,6 +9,7 @@ class BillModel extends Model
     protected $table = 'm_bills';
 
     protected $fillable = [
+        'id_h_orders',
         'bukti',
         'id_status',
         'total_bayar',

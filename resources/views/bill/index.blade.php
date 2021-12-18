@@ -31,7 +31,7 @@
                         @if ($d->bukti)
                           <a href="{{ $d->buktiUrl }}" target="_blank">Bukti</a>
                         @else
-                          Tidak bukti pembayaran
+                          no receipt
                         @endif
                       </td>
                       <td>{{ $d->status->name }}</td>

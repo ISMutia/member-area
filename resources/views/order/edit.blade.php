@@ -57,19 +57,19 @@
                             </div>
 
                             <div class="form-group">
-                                <label>Lama Pengerjaan</label>
+                                <label>Work Duration</label>
                                 <input type="text" name="lama_p" class="form-control" placeholder="Lama Pengerjaan"
                                     value="{{ $dataOrder->lama_p }}">
                             </div>
 
                             <div class="form-group">
-                                <label>Mulai Pengerjaan</label>
+                                <label>Start Work</label>
                                 <input type="date" name="mulai_p" class="form-control" placeholder="Mulai Pengerjaan"
                                     value="{{ $dataOrder->mulai_p }}">
                             </div>
 
                             <div class="form-group">
-                                <label>Selesai Pengerjaan</label>
+                                <label>Finish Work</label>
                                 <input type="date" name="selesai_p" class="form-control" placeholder="Selesai Pengerjaan"
                                     value="{{ $dataOrder->selesai_p }}">
                             </div>
