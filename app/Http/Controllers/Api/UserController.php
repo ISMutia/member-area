@@ -40,24 +40,42 @@ class UserController extends Controller
 
     public function update(Request $r, $id)
     {
-        $fullname = $r->fullname;
-        $date_birth = $r->date_birth;
-        $email = $r->email;
-        $password = $r->password;
-        $status = $r->status;
-
-        $data = UserModel::find($id);
-        $data->fullname = $r->fullname;
-        $data->date_birth = $r->date_birth;
-        $data->email = $r->email;
-        $data->password = $r->password;
-        $data->status = $r->status;
-        $data->save();
+        $dataUser = UserModel::find($id);
+        $dataUser->fullname = $r->fullname;
+        $dataUser->date_birth = $r->date_birth;
+        $dataUser->email = $r->email;
+        // $data->password = $r->password;
+        // $data->status = $r->status;
+        $dataUser->contact_wa = $r->contact_wa;
+        $dataUser->address = $r->address;
+        $dataUser->save();
 
         $data = [
-            'data' => UserModel::all(),
+            'status' => 'success',
+            'message' => 'Profile has updated',
+            'data' => $dataUser
+        ];
+
+        return response()->json($data, 200);
+    }
+    public function updatePhoto(Request $r, $id)
+    {
+        if ($r->hasFile('gambar')) {
+            $type = 'gambar';
+            $path = $r->gambar->storeAs('public/avatar',$r->file('gambar')->getClientOriginalName());
+
+            $dataUser = UserModel::find($id);
+            $dataUser->gambar = $r->file('gambar')->getClientOriginalName();
+            $dataUser->save();
+
+        }else{
+            $type = 'bukan gambar';
+        }
+
+        $data = [
             'status' => 'success',
             'message' => 'Data Berhasil',
+            'gambar_url' => $dataUser->gambar_url,
         ];
 
         return response()->json($data, 200);
@@ -80,29 +98,28 @@ class UserController extends Controller
     public function login(Request $request)
     {
         $condition = [
-            'email'=>$request->email,
-            'password'=>$request->password,
+            'email' => $request->email,
+            'password' => $request->password,
         ];
         $dataUser = UserModel::where($condition)->first();
 
-        $data=null;
-        try{
+        $data = null;
+        try {
 
-            if(strlen($dataUser->fullname)>0){
+            if (strlen($dataUser->fullname) > 0) {
                 $data = [
                     'status' => 'success',
                     'message' => 'Data Berhasil',
                     'data' => $dataUser,
                 ];
-            }
-            else{
+            } else {
                 $data = [
                     'status' => 'failed',
                     'message' => 'Username dan Password Salah',
                     'data' => null,
                 ];
             }
-        }catch(Exception $e){
+        } catch (Exception $e) {
             $data = [
                 'status' => 'failed',
                 'message' => 'Username dan Password Salah',

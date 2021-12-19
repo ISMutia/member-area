@@ -88,7 +88,7 @@ class OrderController extends Controller
                 $totalBayar = 20000000;
             }
 
-            BillModel::create([
+            $m_bill = BillModel::create([
                 'id_h_orders' => $order->id,
                 //'bukti' => 'null',
                 'id_status' => 1,
@@ -101,7 +101,8 @@ class OrderController extends Controller
                 'status' => 'success',
                 'message' => 'Data Berhasil',
                 'id' => $order->id,
-                'data' => OrderModel::all(),
+                'id_bill' => $m_bill->id,
+                'data' => OrderModel::where('id',$order->id)->get()->first(),
             ];
     
             return response()->json($data, 200);

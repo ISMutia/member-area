@@ -29,6 +29,7 @@ Route::put('/userUpdate/{id}', [UserController::class, 'update']);
 Route::delete('/userDelete/{id}', [UserController::class, 'delete']);
 Route::post('/userLogin', [UserController::class, 'login']);
 Route::post('/userRegister', [UserController::class, 'register']);
+Route::post('/userUpdatePhoto/{id}', [UserController::class, 'updatePhoto']);
 
 Route::get('/testimoniList', [TestimoniController::class, 'index']);
 Route::post('/testimoniAdd', [TestimoniController::class, 'create']);
@@ -69,6 +70,8 @@ Route::post('/billAdd', [BillController::class, 'create']);
 Route::put('/billUpdate/{id}', [BillController::class, 'update']);
 Route::delete('/billDelete/{id}', [BillController::class, 'delete']);
 Route::get('/billList/{id}', [BillController::class, 'getByUserId']);
+Route::get('/billDetail/{id}', [BillController::class, 'getBill']);
+Route::post('/uploadPayment/{id}', [BillController::class, 'uploadPayment']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

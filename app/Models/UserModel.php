@@ -18,7 +18,18 @@ class UserModel extends Authenticatable
         'address',
     ];
 
+
     protected $hidden = [
         'password',
     ];
+
+    protected $appends = [
+        'gambar_url'
+
+    ];
+
+    public function getGambarUrlAttribute()
+    {
+        return ($this->gambar) ? asset('storage/avatar/' . $this->gambar) : null;
+    }
 }
