@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
 use App\Http\Controllers\ProgressController;
@@ -26,6 +27,9 @@ Route::group([
     // Route::post('/register', [AuthController::class, 'postRegistration'])->name('register.post');
 });
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
+Route::get('/notifBirthday', [NotificationController::class, 'index']);
+Route::get('/notifDomainT/{month}', [NotificationController::class, 'indexTLamaDomain']);
+
 
 Route::group([
     'middleware' => ['auth'],
