@@ -50,9 +50,9 @@ class BillController extends Controller
             $file = $request->file('bukti');
             $fileName = uniqid('bukti-').'.'.$file->getClientOriginalExtension();
             Storage::disk('public')->putFileAs('bukti-pembayaran', $file, $fileName);
+            $bill->bukti = $fileName;
         }
 
-        $bill->bukti = $fileName;
         $bill->save();
 
         return redirect()->route('bill.index')->withSuccess('Success update bill');
