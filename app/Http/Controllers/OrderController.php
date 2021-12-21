@@ -16,7 +16,6 @@ class OrderController extends Controller
 {
     public function index(Request $request)
     {
-        $keyword = $request->search;
 
         $dataOrder = DB::select("SELECT
         trans_h_orders.*,
@@ -29,11 +28,10 @@ class OrderController extends Controller
         LEFT JOIN m_domain ON m_domain.id = trans_h_orders.id_domain
         LEFT JOIN m_bills ON trans_h_orders.id = m_bills.id_h_orders
         LEFT JOIN m_status ON m_status.id = m_bills.id_status
-        LEFT JOIN user ON user.id = trans_h_orders.id_customers where trans_h_orders.project_name LIKE '%".$keyword."%'");
+        LEFT JOIN user ON user.id = trans_h_orders.id_customers ");
 
         return view('order.index', [
             'data' => $dataOrder,
-            'keyword' => $keyword,
         ]);
     }
 

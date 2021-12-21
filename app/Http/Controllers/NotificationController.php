@@ -22,20 +22,32 @@ class NotificationController extends Controller
             $notif->id_h_orders = null;
             $notif->tittle = 'Happy Birthday';
             $notif->description = 'Wish You All The Best';
-            $notif->save();
-            $res = $this->sendNotif($user, $notif);
+            // $notif->save();
+            // $res = $this->sendNotif($user, $notif);
 
-            dd($res->body());
+            // dd($res->body());
+
+            $current = NotificationModel::where('id_customers', '=',  $user->id)
+                ->where('id_h_orders', '=',  null)
+                ->get();
+            if (count($current) == 0) {
+                $notif->save();
+                $res = $this->sendNotif($user, $notif);
+            } else {
+                //ignore
+            }
         }
 
         $data = [
             'status' => 'success',
             'message' => 'Data Berhasil',
-            'users' => $user,
+            'users' => $users,
         ];
 
-        return response()->json($data, 200);
+        //return response()->json($data, 200);
+        return redirect()->back()->withSuccess('Success update data');
     }
+
     public function sendNotif($user, $notif)
     {
         return $response = Http::withHeaders([
@@ -60,20 +72,27 @@ class NotificationController extends Controller
 
     public function indexTLamaDomain($month)
     {
-        $eDomain = Carbon::now()->startOfMonth()->addMonth($month-1)->format('Y-m');
+        $eDomain = Carbon::now()->startOfMonth()->addMonth($month - 1)->format('Y-m');
         $orders = OrderModel::where('lama_domain', 'LIKE', '%' . $eDomain . '%')->get();
 
         foreach ($orders as $order) {
             $notif = new NotificationModel();
 
-            $notif->id_customers = null;
+            $notif->id_customers = $order->id_customers;
             $notif->id_h_orders = $order->id;
             $notif->tittle = 'Domain Expired';
-            $notif->description = 'Your Domain will expired in '.$month.' months';
-            $notif->save();
-            $this->sendNotifDt($order, $notif);
-        }
+            $notif->description = 'Your Domain will expired in ' . $month . ' months';
 
+            $current = NotificationModel::where('id_customers', '=',  $order->id_customers)
+                ->where('id_h_orders', '=',  $order->id)
+                ->get();
+            if (count($current) == 0) {
+                $notif->save();
+                $this->sendNotifDt($order, $notif);
+            } else {
+                //ignore
+            }
+        }
 
         $data = [
             'status' => 'success',
@@ -82,7 +101,119 @@ class NotificationController extends Controller
             // 'eDomain' => $eDomain,
         ];
 
-        return response()->json($data, 200);
+        //return response()->json($data, 200);
+        return redirect()->back()->withSuccess('Success update data');
+    }
+
+    //ini
+    public function domainExpired()
+    {
+        // $eDomain = Carbon::now()->startOfMonth()->addMonth($month-1)->format('Y-m-d');
+        // $orders = OrderModel::where('lama_domain', 'LIKE', '%' . $eDomain . '%')->get();
+        $orders = OrderModel::where('lama_domain', 'LIKE', '%' . date('Y-m-d') . '%')->get();
+
+        foreach ($orders as $order) {
+            $notif = new NotificationModel();
+
+            $notif->id_customers = $order->id_customers;
+            $notif->id_h_orders = $order->id;
+            $notif->tittle = 'Domain Expired';
+            $notif->description = 'Your Domain is expired ';
+
+            $current = NotificationModel::where('id_customers', '=',  $order->id_customers)
+                ->where('id_h_orders', '=',  $order->id)
+                ->get();
+            if (count($current) == 0) {
+                $notif->save();
+                $this->sendNotifDt($order, $notif);
+            } else {
+                //ignore
+            }
+        }
+
+        $data = [
+            'status' => 'success',
+            'message' => 'Data Berhasil',
+            'orders' => $orders,
+            // 'eDomain' => $eDomain,
+        ];
+
+        //return response()->json($data, 200);
+        return redirect()->back()->withSuccess('Success update data');
+    }
+
+    //ini
+    public function doneProjek()
+    {
+        // $eDomain = Carbon::now()->startOfMonth()->addMonth($month-1)->format('Y-m-d');
+        // $orders = OrderModel::where('lama_domain', 'LIKE', '%' . $eDomain . '%')->get();
+        $orders = OrderModel::where('selesai_p', 'LIKE', '%' . date('Y-m-d') . '%')->get();
+
+        foreach ($orders as $order) {
+            $notif = new NotificationModel();
+
+            $notif->id_customers = $order->id_customers;
+            $notif->id_h_orders = $order->id;
+            $notif->tittle = 'Domain Expired';
+            $notif->description = 'Your Projct is done ';
+
+            $current = NotificationModel::where('id_customers', '=',  $order->id_customers)
+                ->where('id_h_orders', '=',  $order->id)
+                ->get();
+            if (count($current) == 0) {
+                $notif->save();
+                $this->sendNotifDt($order, $notif);
+            } else {
+                //ignore
+            }
+        }
+
+        $data = [
+            'status' => 'success',
+            'message' => 'Data Berhasil',
+            'orders' => $orders,
+            // 'eDomain' => $eDomain,
+        ];
+
+        //return response()->json($data, 200);
+        return redirect()->back()->withSuccess('Success update data');
+    }
+
+    //ini
+    public function doneDay($day)
+    {
+        $eDomain = Carbon::today()->subDays($day)->format('Y-m-d');
+        // $orders = OrderModel::where('lama_domain', 'LIKE', '%' . $eDomain . '%')->get();
+        $orders = OrderModel::where('selesai_p', 'LIKE', '%' . $eDomain . '%')->get();
+
+        foreach ($orders as $order) {
+            $notif = new NotificationModel();
+
+            $notif->id_customers = $order->id_customers;
+            $notif->id_h_orders = $order->id;
+            $notif->tittle = 'Domain Expired';
+            $notif->description = 'Your Project will finish in ' . $day . ' days';
+
+            $current = NotificationModel::where('id_customers', '=',  $order->id_customers)
+                ->where('id_h_orders', '=',  $order->id)
+                ->get();
+            if (count($current) == 0) {
+                $notif->save();
+                $this->sendNotifDt($order, $notif);
+            } else {
+                //ignore
+            }
+        }
+
+        $data = [
+            'status' => 'success',
+            'message' => 'Data Berhasil',
+            'orders' => $orders,
+            // 'eDomain' => $eDomain,
+        ];
+
+        //return response()->json($data, 200);
+        return redirect()->back()->withSuccess('Success update data');
     }
 
     public function sendNotifDt($order, $notif)
@@ -107,6 +238,4 @@ class NotificationController extends Controller
 
         ]);
     }
-
-    
 }

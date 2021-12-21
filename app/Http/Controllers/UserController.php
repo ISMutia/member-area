@@ -9,7 +9,7 @@ class UserController extends Controller
 {
     public function index(Request $request)
     {
-        $dataUser = UserModel::where('fullname', 'like', '%'.$request->search.'%')->get();
+        $dataUser = UserModel::all();
 
         return view('user.index', ['data' => $dataUser]);
     }

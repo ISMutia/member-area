@@ -11,7 +11,7 @@ class DomainController extends Controller
 {
     public function index(Request $request)
     {
-        $dataDomain = DomainModel::where('name', 'like', '%'.$request->search.'%')->get();
+        $dataDomain = DomainModel::all();
 
         return view('domain.index', [
             'data' => $dataDomain

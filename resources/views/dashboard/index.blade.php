@@ -6,6 +6,13 @@
       <div class="col-lg-12 grid-margin stretch-card">
         <div class="card card-rounded shadow-lg">
           <div class="card-body">
+            <a href="/notification"><h4 class="card-title card-title-dash mb-4">Cek Trigger Notification</h4><a>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-12 grid-margin stretch-card">
+        <div class="card card-rounded shadow-lg">
+          <div class="card-body">
             <h4 class="card-title card-title-dash mb-4">Detail Project</h4>
             <div class="row">
               <div class="col-sm-12">

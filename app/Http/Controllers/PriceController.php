@@ -9,7 +9,7 @@ class PriceController extends Controller
 {
     public function index(Request $request)
     {
-        $dataPrice = priceModel::where('name', 'like', '%'.$request->search.'%')->get();
+        $dataPrice = priceModel::all();
 
         return view('price.index', ['data' => $dataPrice]);
     }

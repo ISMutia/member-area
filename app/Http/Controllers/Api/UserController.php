@@ -148,4 +148,18 @@ class UserController extends Controller
 
         return response()->json($data, 200);
     }
+
+    public function fcmUpdate(Request $r, $id)
+    {
+        $dataUser = UserModel::find($id);
+        $dataUser->token_fcm = $r->token_fcm;
+        $dataUser->save();
+
+        $data = [
+            'status' => 'success',
+            'message' => 'Profile has updated'
+        ];
+
+        return response()->json($data, 200);
+    }
 }

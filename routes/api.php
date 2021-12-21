@@ -9,6 +9,7 @@ use App\Http\Controllers\Api\ProgressController;
 use App\Http\Controllers\Api\StatusController;
 use App\Http\Controllers\Api\TestimoniController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Api\NotificationController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -30,6 +31,7 @@ Route::delete('/userDelete/{id}', [UserController::class, 'delete']);
 Route::post('/userLogin', [UserController::class, 'login']);
 Route::post('/userRegister', [UserController::class, 'register']);
 Route::post('/userUpdatePhoto/{id}', [UserController::class, 'updatePhoto']);
+Route::post('/fcmUpdate/{id}', [UserController::class, 'fcmUpdate']);
 
 Route::get('/testimoniList', [TestimoniController::class, 'index']);
 Route::post('/testimoniAdd', [TestimoniController::class, 'create']);
@@ -72,6 +74,8 @@ Route::delete('/billDelete/{id}', [BillController::class, 'delete']);
 Route::get('/billList/{id}', [BillController::class, 'getByUserId']);
 Route::get('/billDetail/{id}', [BillController::class, 'getBill']);
 Route::post('/uploadPayment/{id}', [BillController::class, 'uploadPayment']);
+
+Route::get('/notification/{id}', [NotificationController::class, 'index']);
 
 // Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //     return $request->user();

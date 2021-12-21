@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BillController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DomainController;
+use App\Http\Controllers\NotifController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PriceController;
@@ -29,6 +30,12 @@ Route::group([
 Route::get('/logout', [AuthController::class, 'logout'])->name('logout');
 Route::get('/notifBirthday', [NotificationController::class, 'index']);
 Route::get('/notifDomainT/{month}', [NotificationController::class, 'indexTLamaDomain']);
+Route::get('/domainExpired', [NotificationController::class, 'domainExpired']);
+Route::get('/doneProjek', [NotificationController::class, 'doneProjek']);
+Route::get('/doneDay/{day}', [NotificationController::class, 'doneDay']);
+
+Route::get('/notification', [NotifController::class, 'index']);
+
 
 
 Route::group([
