@@ -63,14 +63,13 @@ class ProgressController extends Controller
         ]);
     }
 
-    public function update(Request $request)
+    public function update($id, Request $request)
     {
         $request->validate([
             'progress' => ['required', 'numeric'],
         ]);
 
-        $data = ProgressModel::find($request->id);
-        $data->id_h_orders = $request->id;
+        $data = ProgressModel::find($id);
         $data->progress = $request->progress;
         $data->save();
 
