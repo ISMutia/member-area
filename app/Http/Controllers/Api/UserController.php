@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\UserModel;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
@@ -62,13 +63,12 @@ class UserController extends Controller
     {
         if ($r->hasFile('gambar')) {
             $type = 'gambar';
-            $path = $r->gambar->storeAs('public/avatar',$r->file('gambar')->getClientOriginalName());
+            $path = $r->gambar->storeAs('public/avatar', $r->file('gambar')->getClientOriginalName());
 
             $dataUser = UserModel::find($id);
             $dataUser->gambar = $r->file('gambar')->getClientOriginalName();
             $dataUser->save();
-
-        }else{
+        } else {
             $type = 'bukan gambar';
         }
 
@@ -132,10 +132,15 @@ class UserController extends Controller
 
     public function register(Request $r)
     {
+        // $r->validate([
+        //     'email' => ['required', 'unique:user,email'],
+        // ]);
+
         $data = new UserModel();
         $data->fullname = $r->fullname;
         $data->date_birth = $r->date_birth;
         $data->email = $r->email;
+        //$data->password = Hash::make($r->password);
         $data->password = $r->password;
         $data->status = 'customer';
         $data->save();

@@ -76,15 +76,15 @@ class OrderController extends Controller
                 'progress' => 0,
             ]);
 
-            
+
             $id_price = $r->id_price;
             $totalBayar = 0;
 
-            if($id_price == 1){
+            if ($id_price == 1) {
                 $totalBayar = 3500000;
-            }elseif($id_price == 2){
+            } elseif ($id_price == 2) {
                 $totalBayar = 5000000;
-            }elseif($id_price == 3){
+            } elseif ($id_price == 3) {
                 $totalBayar = 20000000;
             }
 
@@ -93,7 +93,7 @@ class OrderController extends Controller
                 //'bukti' => 'null',
                 'id_status' => 1,
                 'total_bayar' => $totalBayar
-               
+
             ]);
 
             DB::commit();
@@ -102,18 +102,17 @@ class OrderController extends Controller
                 'message' => 'Data Berhasil',
                 'id' => $order->id,
                 'id_bill' => $m_bill->id,
-                'data' => OrderModel::where('id',$order->id)->get()->first(),
+                'data' => OrderModel::where('id', $order->id)->get()->first(),
             ];
-    
+
             return response()->json($data, 200);
-            
         } catch (Exception $e) {
             DB::rollBack();
             $data = [
                 'status' => 'failed',
                 'message' => $e->getMessage(),
             ];
-    
+
             return response()->json($data, 200);
         }
     }
@@ -189,5 +188,4 @@ class OrderController extends Controller
 
         return response()->json($data, 200);
     }
-
 }

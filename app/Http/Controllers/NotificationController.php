@@ -20,7 +20,7 @@ class NotificationController extends Controller
 
             $notif->id_customers = $user->id;
             $notif->id_h_orders = null;
-            $notif->tittle = 'Happy Birthday';
+            $notif->tittle = 'Happy Birthday '.$user->fullname;
             $notif->description = 'Wish You All The Best';
             // $notif->save();
             // $res = $this->sendNotif($user, $notif);
