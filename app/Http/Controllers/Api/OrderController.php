@@ -79,9 +79,10 @@ class OrderController extends Controller
 
             $id_price = $r->id_price;
             $totalBayar = 0;
+            $price1 = 3500000;
 
             if ($id_price == 1) {
-                $totalBayar = 3500000;
+                $totalBayar = number_format($price1);
             } elseif ($id_price == 2) {
                 $totalBayar = 5000000;
             } elseif ($id_price == 3) {

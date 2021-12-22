@@ -97,9 +97,14 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
+        // $request->validate([
+        //     'email' => ['required', 'unique:user,email'],
+        // ]);
+
         $condition = [
             'email' => $request->email,
             'password' => $request->password,
+            //'password' => Hash::make($request->password),
         ];
         $dataUser = UserModel::where($condition)->first();
 
@@ -135,12 +140,13 @@ class UserController extends Controller
         // $r->validate([
         //     'email' => ['required', 'unique:user,email'],
         // ]);
+        //$data->email = $r->getcodes()->get()->unique('email');
+        //$data->password = Hash::make($r->password);
 
         $data = new UserModel();
         $data->fullname = $r->fullname;
         $data->date_birth = $r->date_birth;
         $data->email = $r->email;
-        //$data->password = Hash::make($r->password);
         $data->password = $r->password;
         $data->status = 'customer';
         $data->save();
