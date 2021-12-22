@@ -35,7 +35,7 @@
                         @endif
                       </td>
                       <td>{{ $d->status->name }}</td>
-                      <td>Rp. {{ number_format($d->total_bayar) }}</td>
+                      <td>Rp. {{ $d->total_bayar }}</td>
                       <td>{{ $d->created_at }}</td>
                       <td>
                         <a href="{{ route('bill.edit', ['id' => $d->id]) }}" class="btn btn-primary btn-sm">Edit</a>

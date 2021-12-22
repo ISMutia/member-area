@@ -6,7 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Models\UserModel;
 use Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Symfony\Component\Console\Input\Input;
 
 class UserController extends Controller
 {
@@ -97,21 +99,19 @@ class UserController extends Controller
 
     public function login(Request $request)
     {
-        // $request->validate([
-        //     'email' => ['required', 'unique:user,email'],
-        // ]);
-
         $condition = [
             'email' => $request->email,
-            'password' => $request->password,
-            //'password' => Hash::make($request->password),
+            //'password' => $request->password,
+            'password' => Auth::attempt(['password' => $request->password]),
+            //'password' => password_verify($request->password),
         ];
         $dataUser = UserModel::where($condition)->first();
+        //dd($dataUser);
 
         $data = null;
         try {
 
-            if (strlen($dataUser->fullname) > 0) {
+            if (strlen($dataUser->fullname)  > 0) {
                 $data = [
                     'status' => 'success',
                     'message' => 'Data Berhasil',
@@ -140,16 +140,19 @@ class UserController extends Controller
         // $r->validate([
         //     'email' => ['required', 'unique:user,email'],
         // ]);
-        //$data->email = $r->getcodes()->get()->unique('email');
-        //$data->password = Hash::make($r->password);
 
         $data = new UserModel();
         $data->fullname = $r->fullname;
         $data->date_birth = $r->date_birth;
         $data->email = $r->email;
-        $data->password = $r->password;
+        //$data->password = $r->password;
+        //$data->email = $r->getcodes()->get()->unique('email');
+        $data->password = Hash::make($r->password);
         $data->status = 'customer';
         $data->save();
+            
+        //dd($dataUser);
+
 
         $data = [
             'data' => null,

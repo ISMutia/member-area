@@ -44,8 +44,8 @@ class NotificationController extends Controller
             'users' => $users,
         ];
 
-        //return response()->json($data, 200);
-        return redirect()->back()->withSuccess('Success update data');
+        return response()->json($data, 200);
+        //return redirect()->back()->withSuccess('Success update data');
     }
 
     public function sendNotif($user, $notif)
@@ -101,8 +101,8 @@ class NotificationController extends Controller
             // 'eDomain' => $eDomain,
         ];
 
-        //return response()->json($data, 200);
-        return redirect()->back()->withSuccess('Success update data');
+        return response()->json($data, 200);
+        //return redirect()->back()->withSuccess('Success update data');
     }
 
     //ini
@@ -138,8 +138,8 @@ class NotificationController extends Controller
             // 'eDomain' => $eDomain,
         ];
 
-        //return response()->json($data, 200);
-        return redirect()->back()->withSuccess('Success update data');
+        return response()->json($data, 200);
+        //return redirect()->back()->withSuccess('Success update data');
     }
 
     //ini
@@ -175,8 +175,8 @@ class NotificationController extends Controller
             // 'eDomain' => $eDomain,
         ];
 
-        //return response()->json($data, 200);
-        return redirect()->back()->withSuccess('Success update data');
+        return response()->json($data, 200);
+        //return redirect()->back()->withSuccess('Success update data');
     }
 
     //ini
@@ -212,8 +212,8 @@ class NotificationController extends Controller
             // 'eDomain' => $eDomain,
         ];
 
-        //return response()->json($data, 200);
-        return redirect()->back()->withSuccess('Success update data');
+        return response()->json($data, 200);
+        //return redirect()->back()->withSuccess('Success update data');
     }
 
     public function sendNotifDt($order, $notif)

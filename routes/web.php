@@ -34,7 +34,7 @@ Route::get('/domainExpired', [NotificationController::class, 'domainExpired']);
 Route::get('/doneProjek', [NotificationController::class, 'doneProjek']);
 Route::get('/doneDay/{day}', [NotificationController::class, 'doneDay']);
 
-Route::get('/notification', [NotifController::class, 'index']);
+//Route::get('/notification', [NotifController::class, 'index']);
 
 
 

@@ -80,13 +80,15 @@ class OrderController extends Controller
             $id_price = $r->id_price;
             $totalBayar = 0;
             $price1 = 3500000;
+            $price2 = 5000000;
+            $price3 = 20000000;
 
             if ($id_price == 1) {
                 $totalBayar = number_format($price1);
             } elseif ($id_price == 2) {
-                $totalBayar = 5000000;
+                $totalBayar = number_format($price2);
             } elseif ($id_price == 3) {
-                $totalBayar = 20000000;
+                $totalBayar = number_format($price3);
             }
 
             $m_bill = BillModel::create([

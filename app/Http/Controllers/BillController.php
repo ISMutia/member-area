@@ -34,7 +34,7 @@ class BillController extends Controller
         $request->validate([
             'id_status' => ['required'],
             'bukti' => ['sometimes'],
-            'total_bayar' => ['required', 'numeric'],
+            'total_bayar' => ['required'],
         ]);
 
         $bill = BillModel::find($id);
